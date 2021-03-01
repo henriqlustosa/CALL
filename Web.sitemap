@@ -29,9 +29,21 @@
       <siteMapNode url="~/administrativo/Principal.aspx" title="Ativos"  description="Lista de consultas para Ligar" />
       <siteMapNode url="~/administrativo/ListaAtivos.aspx" title="1ª Tentativa" />
       <siteMapNode url="~/administrativo/ListaAtivos2.aspx" title="2ª Tentativa" />
+      <siteMapNode url="~/administrativo/ListaAtivos3.aspx" title="3ª Tentativa" />
       <siteMapNode url="~/Consultas/ConsultasRemarcar.aspx" title="Remarcar" />
-      <siteMapNode url="~/administrativo/historico.aspx" title="Histórico" />
-      <!-- <siteMapNode url="~/administrativo/ListaAtivos3.aspx" title="3ª Tentativa" />-->
+    </siteMapNode>
+
+    <siteMapNode url="~/administrativo/historico.aspx" title="Histórico" >
+
+    </siteMapNode>
+    
+
+    <siteMapNode url="" title="Encaminhamento" roles="pós-consulta" description="">
+      <siteMapNode url="~/encaminhamento/cadencaminhamento.aspx" title="Cadastro Pedido Consulta"  description="Cadastro de Pedido de Consulta" />
+      <siteMapNode url="~/encaminhamento/pedidospendentes.aspx" title="Pedidos Consulta Pendentes"  description="Pedidos de Consulta Pendentes" />
+      <siteMapNode url="~/encaminhamento/pedidospendentesporrh.aspx" title="Pedidos Consulta Por RH"  description="Pedidos de Consulta Por RH" />
+
+      
     </siteMapNode>
 
     <siteMapNode url="" title="Endocrinologia" roles="Ativo" description="">

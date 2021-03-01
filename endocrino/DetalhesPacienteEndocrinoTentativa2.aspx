@@ -193,7 +193,7 @@
                                             </asp:DropDownList>
                                             <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
                                                 ConnectionString="<%$ ConnectionStrings:gtaConnectionString %>" 
-                                                SelectCommand="SELECT [id_status], [status] FROM [status_consulta]">
+                                                SelectCommand="SELECT [id_status], [status] FROM [status_consulta] WHERE ativo = 'S'">
                                             </asp:SqlDataSource>
                                         </div>
                                     </div>

@@ -28,7 +28,6 @@ public class AtivoDAO
     {
         var listaAtividades = new List<Ativo_Ligacao>();
        
-
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["gtaConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
@@ -59,9 +58,7 @@ public class AtivoDAO
             {
                 string error = ex.Message;
             }
-
         }
-
         return listaAtividades;
     }
 
@@ -106,7 +103,6 @@ public class AtivoDAO
         }
         return ativo;
     }
-
 
     public static int QuantidadeConsultasRealizarAtivo(int _ativo, int _tentativa)
     {
@@ -207,7 +203,8 @@ public class AtivoDAO
                               "c.dt_consulta, c.grade, c.equipe, c.profissional, c.codigo_consulta, c.ativo, " +
                               "p.telefone1, p.telefone2, p.telefone3, p.telefone4 " +
                               "FROM consulta c, paciente_Mailling p " +
-                              " WHERE c.prontuario = p.prontuario AND ativo = 0 AND dt_consulta <= GETDATE() + 30 " +
+                              "WHERE c.prontuario = p.prontuario AND ativo = 0 " +
+                              //" WHERE c.prontuario = p.prontuario AND ativo = 0 AND dt_consulta <= GETDATE() + 30 " +
                               " AND equipe NOT LIKE 'ENDOCRINO%'" +
                               " ORDER BY id_consulta;";
                    
@@ -218,7 +215,7 @@ public class AtivoDAO
                         " FROM ativo_ligacao l, consulta c, status_consulta s, paciente_Mailling p " +
                         " WHERE p.prontuario = c.prontuario " +
                         " AND c.ativo = 1" +
-                        " AND c.dt_consulta <= GETDATE() + 20 " +
+                        //" AND c.dt_consulta <= GETDATE() + 20 " +
                         " AND tentativa = "+_tentativaLigacao + 
                         " AND l.id_consulta = c.id_consulta " +
                         " AND l.status = s.id_status " +
@@ -284,8 +281,14 @@ public class AtivoDAO
                 }
 
                 //1 = CONFIRMADO, 2 = CANCELAR CONSULTA, 3 = CANCELAR E REMARCAR, 4 = FALECIDO, 10 = NÃO CONSTA CONSULTA, 11 = CONSULTA REMARCADA
+                
                 // tentativa = 2 confirma realizado - solicitado não entrar na lista da 3ª tentativa
-                if (_status == 1 || _status == 2 || _status == 3 || _status == 4 || _status == 10 || _status == 11 || _tentativa == 2) 
+
+
+                //3ª tentativa Ligar mais tarde, não atende, caixa postal, telefone inesistente, não completa chamada
+                // colocando a variável _tentativa == 2, as ligações não vão mais para a 3ª tentativa
+                //if (_status == 1 || _status == 2 || _status == 3 || _status == 4 || _status == 10 || _status == 11 ) // || _tentativa == 2
+                if (_tentativa == 2)
                 {
                     _realizado = "S";
                 }
@@ -321,7 +324,7 @@ public class AtivoDAO
                     mensagem = "Cadastro realizado com sucesso!";
 
                 // 2 - cancelar consulta, 3 - cancelar e remarcar, 4 - falecido, 7 - pessoa desconhecida, 8 - telefone inexistente
-                if(_status == 2 || _status == 3 || _status == 4 || _status == 7 || _status == 8) 
+                if(_status == 4 ) 
                 {
                     consultasCanceladas(_id_consulta);
                 }

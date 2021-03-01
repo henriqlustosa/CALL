@@ -30,6 +30,74 @@
             <div class="row">
                 <div class="col-md-12">
                 
+                <div class="x_panel">
+                        <div class="x_title">
+                            <h3>
+                                Em 15/07/2020</h3>
+                            <div class="clearfix">
+                            </div>
+                        </div>
+                        <div class="x_content">
+                            <blockquote>
+                                <p>
+                                    <i class="fa fa-check green"></i> Pesquisa  de Pedidos de Consultas Pendentes Por RH. Pesquisa de consultas Pendentes Cadastradas aguardando disponibilidade de consultas. Em Encaminhamento > Pedidos de Consultas Por Rh.
+                                </p>
+                            </blockquote>
+                            
+                        </div>
+                    </div> 
+                
+                
+                
+                
+                
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h3>
+                                Em 19/05/2020</h3>
+                            <div class="clearfix">
+                            </div>
+                        </div>
+                        <div class="x_content">
+                            <blockquote>
+                                <p>
+                                    <i class="fa fa-check green"></i> Histórico. Alteração do menu, movendo o link Histórico de Consultas para o menu Histórico. Em Histórico. 
+                                </p>
+                                <p>
+                                    <i class="fa fa-check green"></i> Histórico. Campos de atualização dos telefones dos pacientes cadastrados no sistema HSPM CALL. Em Histórico. 
+                                </p>
+                            </blockquote>
+                            
+                        </div>
+                    </div>  
+                
+                
+                
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h3>
+                                Em 18/05/2020</h3>
+                            <div class="clearfix">
+                            </div>
+                        </div>
+                        <div class="x_content">
+                            <blockquote>
+                                <p>
+                                    <i class="fa fa-check green"></i> Módulo Encaminhamento. Módulo para cadastro de pedidos de consulta, Encaminhamento/retorno. 
+                                </p>
+                                <p>
+                                    <i class="fa fa-check green"></i> Cadastro de Pedido de Consulta. Página para o cadastramento dos pedidos de consultas. Em Encaminhamento > Cadastro de Pedido de Consulta. 
+                                </p>
+                                <p>
+                                    <i class="fa fa-check green"></i> Pedidos de Consulta Pendente. Lista das consultas Pendentes Cadastradas aguardandodisponibilidade de consultas. Em Encaminhamento > Pedidos Consultas Pendentes.
+                                </p>
+                            </blockquote>
+                            
+                        </div>
+                    </div> 
+                
+                
+                
                     <div class="x_panel">
                         <div class="x_title">
                             <h3>

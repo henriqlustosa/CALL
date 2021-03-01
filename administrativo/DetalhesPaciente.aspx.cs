@@ -119,6 +119,7 @@ public partial class administrativo_DetalhesPaciente : System.Web.UI.Page
         System.Text.StringBuilder sb = new System.Text.StringBuilder();
         sb.Append("$('.modal-backdrop').remove();");
         sb.Append("$(document.body).removeClass('modal-open');");
+        
         ScriptManager.RegisterStartupScript(Page, this.Page.GetType(), "clientscript", sb.ToString(), true);
 
         ClearInputs(Page.Controls);// limpa os textbox

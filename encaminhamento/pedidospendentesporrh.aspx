@@ -1,61 +1,60 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-    CodeFile="ConsultasRemarcar.aspx.cs" Inherits="publico_ConsultasRemarcar" Title="Call HSPM" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="pedidospendentesporrh.aspx.cs" Inherits="encaminhamento_pedidospendentesporrh" Title="Untitled Page" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-
-  
-    <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
-  
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+   <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+<asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
             <h3>
-                <asp:Label ID="lbTitulo" runat="server" Text="CONSULTAS PARA CANCELAR/REMARCAR"></asp:Label></h3>
+                <asp:Label ID="lbTitulo" runat="server" Text="Consultas pendentes por RH"></asp:Label></h3>
             <div class="x_content">
-                <div class="row">
-                    <div class="col-md-2 col-sm-6  form-group">
-                        <label>
-                            Status de Ligação <span class="required">*</span></label>
-                        <asp:DropDownList ID="ddlStatus" class="form-control" runat="server" 
-                            AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="status" 
-                            DataValueField="id_status">
-                        </asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-                            ConnectionString="<%$ ConnectionStrings:gtaConnectionString %>" 
-                            SelectCommand="SELECT [id_status], [status] FROM [status_consulta] WHERE [id_status] IN (2,3,4,7,8) ">
-                        </asp:SqlDataSource>
-                        
+            
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-md-4" for="UsernameTextBox">
+                        Prontuário: <span class="required">*</span>
+                    </label>
+                    <div class="col-md-8">
+                        <asp:TextBox ID="txbProntuario" class="form-control" runat="server" AutoPostBack="true" />
+                        <asp:RequiredFieldValidator ID="UsernameRequiredValidator" runat="server" ControlToValidate="txbProntuario"
+                            ForeColor="red" Display="Static" ErrorMessage="Required" /><br />
                     </div>
-                   
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4 col-sm-4 col-xs-8 ">
+                        <asp:Button ID="btnPesquisar" Text="Pesquisar" runat="server" Enabled="true" class="btn btn-primary"
+                            OnClick="btnPesquisar_OnClick" />
+                    </div>
                 </div>
             </div>
+            
+            </div>
            
-           <asp:GridView ID="GridView1" runat="server"  AutoGenerateColumns="False"
-                 DataKeyNames="Id_consulta" OnRowCommand="grdMain_RowCommand"
-                CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1" Width="100%" OnPreRender="GridView1_PreRender" >
+            <asp:GridView ID="GridView1" runat="server"  AutoGenerateColumns="False"
+                 DataKeyNames="cod_pedido" OnRowCommand="grdMain_RowCommand"
+                CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1" Width="100%" >
                 <RowStyle BackColor="#f7f6f3" ForeColor="#333333" />
                 <Columns>
-                    <asp:BoundField DataField="Id_consulta" HeaderText="ID CONSULTA" SortExpression="Id_consulta"
+                    <asp:BoundField DataField="cod_pedido" HeaderText="Código do Pedido" SortExpression="cod_pedido"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-                    <asp:BoundField DataField="Nome" HeaderText="Paciente" SortExpression="Nome" ItemStyle-CssClass="hidden-md"
+                    <asp:BoundField DataField="prontuario" HeaderText="Prontuário" SortExpression="prontuario"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />    
+                    <asp:BoundField DataField="nome_paciente" HeaderText="Paciente" SortExpression="nome_paciente" ItemStyle-CssClass="hidden-md"
                         HeaderStyle-CssClass="hidden-md" />
-                    <asp:BoundField DataField="Prontuario" HeaderText="PRONTUÁRIO/RH" SortExpression="Prontuario"
-                        HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />
-                    <asp:BoundField DataField="Dt_Consulta" HeaderText="DATA DA CONSULTA" SortExpression="Dt_consulta"
+                    <asp:BoundField DataField="data_pedido" HeaderText="Data Pedido" SortExpression="data_pedido"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-                    <asp:BoundField DataField="Grade" HeaderText="Grade" SortExpression="Grade"
+                    <asp:BoundField DataField="data_cadastro" HeaderText="Data Cadastro" SortExpression="data_cadastro"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-                    <asp:BoundField DataField="Equipe" HeaderText="Equipe" SortExpression="Equipe"
+                    <asp:BoundField DataField="descricao_espec" HeaderText="Especialidade" SortExpression="descricao_espec"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-                     <asp:BoundField DataField="Data_Contato" HeaderText="Data da ligacao" SortExpression="Data_Contato"
+                    <asp:BoundField DataField="exames_solicitados" HeaderText="Exames Solicitados" SortExpression="exames_solicitados"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-                     <asp:BoundField DataField="Status" HeaderText="Status da ligacao" SortExpression="Status"
-                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />   
-                    <asp:BoundField DataField="Observacao" HeaderText="Observacao" SortExpression="Observacao"
+                    <asp:BoundField DataField="outras_informacoes" HeaderText="Outras Informações" SortExpression="outras_informacoes"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-                    <asp:BoundField DataField="Usuario_Contato" HeaderText="Contato" SortExpression="Usuario_Contato"
+                    <asp:BoundField DataField="solicitante" HeaderText="Solicitante" SortExpression="solicitante"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+                    
                     
                     <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
                         <ItemTemplate>
@@ -75,6 +74,7 @@
                 <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                 <EditRowStyle BackColor="#999999" />
             </asp:GridView>
+    
     
  
    
@@ -101,3 +101,4 @@
             });
          </script>
 </asp:Content>
+
