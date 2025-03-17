@@ -55,7 +55,7 @@ public partial class administracao_cargaMailling : System.Web.UI.Page
 
                         string nomePaciente = DR[0].ToString();
                         string prontuario = DR[1].ToString();
-                        string dt_consulta = Convert.ToDateTime(DR[2].ToString()).ToString("yyyy-MM-dd HH:mm:ss");
+                        string dt_consulta = Convert.ToDateTime(DR[2].ToString()).ToString("yyyy-dd-MM HH:mm:ss");
                         string grade = DR[3].ToString();
                         string equipe = DR[4].ToString();
                         string profissional = DR[5].ToString();
@@ -65,7 +65,7 @@ public partial class administracao_cargaMailling : System.Web.UI.Page
                         string telefone3 = DR[9].ToString();
                         string telefone4 = DR[10].ToString();
 
-                        string dt_carga = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        string dt_carga = DateTime.Now.ToString("yyyy-dd-MM HH:mm:ss");
 
                         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["gtaConnectionString"].ToString()))
                         {
@@ -135,7 +135,7 @@ public partial class administracao_cargaMailling : System.Web.UI.Page
     private DataTable DadosExcel(string Arquivo)
     {
         Char aspas = '"';
-        string Conexao = "Provider=Microsoft.Jet.OLEDB.4.0;" +
+        string Conexao = "Provider=Microsoft.ACE.OLEDB.12.0;" +
         "Data Source=" + Arquivo + ";" +
         "Extended Properties=" + aspas + "Excel 8.0;HDR=YES" + aspas;
         System.Data.OleDb.OleDbConnection Cn = new System.Data.OleDb.OleDbConnection();

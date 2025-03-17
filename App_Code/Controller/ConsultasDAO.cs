@@ -92,7 +92,7 @@ public class ConsultasDAO
                     ConsultasRemarcar consulta = new ConsultasRemarcar();
                     consulta.Id_Consulta = dr1.GetInt32(0);
                     consulta.Equipe = dr1.GetString(1);
-                    consulta.Dt_Consulta = dr1.GetDateTime(2).ToString();
+                    consulta.Dt_Consulta = dr1.GetDateTime(2);
                     consulta.Codigo_Consulta = dr1.GetInt32(3);
                     consulta.Grade = dr1.GetInt32(4);
                     consulta.Equipe = dr1.GetString(5);
@@ -136,7 +136,7 @@ public class ConsultasDAO
                     ConsultasRemarcar consulta1 = new ConsultasRemarcar();
                     consulta1.Id_Consulta = dr2.GetInt32(0);
                     consulta1.Equipe = dr2.GetString(1);
-                    consulta1.Dt_Consulta = dr2.GetDateTime(2).ToString();
+                    consulta1.Dt_Consulta = dr2.GetDateTime(2);
                     consulta1.Codigo_Consulta = dr2.GetInt32(3);
                     consulta1.Grade = dr2.GetInt32(4);
                     consulta1.Equipe = dr2.GetString(5);
@@ -182,7 +182,7 @@ public class ConsultasDAO
                               ",[usuario]" +
                               ",[grade]" +
                               " FROM [vw_cancelar_consultas] " +
-                              " WHERE stat_cancelar = 0 " +
+                              " WHERE stat_cancelar = 1 " +
                               " AND status = " + _status;
             try
             {
@@ -198,7 +198,7 @@ public class ConsultasDAO
                     consulta.Prontuario = dr1.GetInt32(2);
                     consulta.Nome = dr1.GetString(3);
                     consulta.Equipe = dr1.GetString(4);
-                    consulta.Dt_Consulta = dr1.GetDateTime(5).ToString();
+                    consulta.Dt_Consulta = dr1.GetDateTime(5);
                     consulta.Codigo_Consulta = dr1.GetInt32(6);
                     consulta.Status = dr1.GetString(7);
                     consulta.Observacao = dr1.GetString(8);
@@ -256,7 +256,7 @@ public class ConsultasDAO
                 consulta.Telefone4 = dr.GetString(5);
                 consulta.Equipe = dr.GetString(6);
                 consulta.Nome_Profissional = dr.GetString(7);
-                consulta.Dt_Consulta = dr.GetDateTime(8).ToString();
+                consulta.Dt_Consulta = dr.GetDateTime(8);
                 consulta.Codigo_Consulta = dr.GetInt32(9);
                 consulta.Status = dr.GetString(10);
                 consulta.Observacao = dr.GetString(11) + " Funcionário que fez contato: " + dr.GetString(14);

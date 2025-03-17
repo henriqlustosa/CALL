@@ -53,7 +53,7 @@ public partial class Consultas_rediscagem : System.Web.UI.Page
                     Ativo consulta = new Ativo();
                     consulta.Id_Consulta = dr1.GetInt32(0);
                     consulta.Prontuario = dr1.GetInt32(1);
-                    consulta.Dt_Consulta = dr1.GetDateTime(2).ToString();
+                    consulta.Dt_Consulta = dr1.GetDateTime(2);
                     consulta.Grade = dr1.GetInt32(3);
                     consulta.Equipe = dr1.GetString(4);
                     consulta.Nome_Profissional = dr1.GetString(5);

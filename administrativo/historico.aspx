@@ -2,6 +2,11 @@
     CodeFile="historico.aspx.cs" Inherits="Paciente_historico" Title="Call HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+          <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
+ <script src='<%= ResolveUrl("~/moment/jquery-3.7.0.js") %>' type="text/javascript"></script>
+<script src='<%= ResolveUrl("~/moment/moment.min.js") %>' type="text/javascript"></script>
+<script src='<%= ResolveUrl("~/moment/jquery.dataTables.min.js") %>' type="text/javascript"></script>
+<script src='<%= ResolveUrl("~/moment/datetime.js") %>' charset="utf8" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
 
@@ -119,4 +124,31 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
+     <script type="text/javascript">
+     $(document).ready(function () {
+     $.noConflict();
+
+     let table = $('#<%= GridView1.ClientID %>');
+
+    // Mover o primeiro TR para o THEAD corretamente
+    let firstRow = table.find("tr:first").detach();
+    table.prepend($("<thead></thead>").append(firstRow));
+
+    // Inicializar o DataTable corretamente
+    table.DataTable({
+        destroy: true, // Permite reinicializar a tabela sem erro
+        language: {
+            search: "<i class='fa fa-search' aria-hidden='true'></i>",
+            processing: "Processando...",
+            lengthMenu: "Mostrando _MENU_ registros por página",
+            info: "Mostrando página _PAGE_ de _PAGES_",
+            infoEmpty: "Nenhum registro encontrado",
+            infoFiltered: "(filtrado de _MAX_ registros no total)"
+        },
+        columnDefs: [
+            { targets: [3], render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm:ss', 'pt-br') }
+        ]
+    });
+
+}); </script>
 </asp:Content>

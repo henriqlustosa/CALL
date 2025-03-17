@@ -18,7 +18,7 @@ public class Ativo : PacienteMailling
     public int Id_Consulta { get; set; }
     public int Prontuario { get; set; }
     public int Grade { get; set; }
-    public string Dt_Consulta { get; set; }
+    public DateTime Dt_Consulta { get; set; }
     public string Equipe { get; set; }
     public string Nome_Profissional { get; set; }
     public int Codigo_Consulta { get; set; }

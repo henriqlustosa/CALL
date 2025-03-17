@@ -23,7 +23,8 @@ public class webservice : System.Web.Services.WebService
     [WebMethod()]
     public string QuantidadeAtivosStatusDiaGrafico(string data)
     {
-        data = "23/03/2020";
+        DateTime now = DateTime.Now;
+        data = now.ToString("dd/MM/yyyy");
 
 
         int dia = Convert.ToInt32(data.Substring(0, 2));

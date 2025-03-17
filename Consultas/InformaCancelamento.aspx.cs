@@ -32,7 +32,9 @@ public partial class Consultas_InformaCancelamento : System.Web.UI.Page
             lbStatus.Text = consulta.Status;
             txbNomePaciente.Text = consulta.Nome;
             txbNomeProntuario.Text = consulta.Prontuario.ToString();
-            txbdtConsulta.Text = consulta.Dt_Consulta;
+
+            ///PROBLEMA
+            txbdtConsulta.Text = consulta.Dt_Consulta.ToString();
             txbCodConsulta.Text = consulta.Codigo_Consulta.ToString();
             txbEquipe.Text = consulta.Equipe;
             txbProfissional.Text = consulta.Nome_Profissional;

@@ -120,7 +120,7 @@ public class AtivoDAO
                                 " AND l.status = s.id_status " +
                                 " AND s.tenta = 'S' " +
                                 " AND c.equipe NOT LIKE 'ENDOCRINO%'" +
-                                " AND datediff(day, GETDATE() , dt_consulta ) > 0 "+
+                                " AND datediff(day,dt_consulta, GETDATE()   ) > 0 " +
                                 " AND l.realizado = 'N'";
         }
         else
@@ -173,7 +173,7 @@ public class AtivoDAO
 
                     consulta.Id_Consulta = dr1.GetInt32(0);
                     consulta.Prontuario = dr1.GetInt32(1);
-                    consulta.Dt_Consulta = dr1.GetDateTime(2).ToString();
+                    consulta.Dt_Consulta = dr1.GetDateTime(2);
                     consulta.Grade = dr1.GetInt32(3);
                     consulta.Equipe = dr1.GetString(4);
                     consulta.Nome_Profissional = dr1.GetString(5);
@@ -234,7 +234,8 @@ public class AtivoDAO
                     consulta.Id_Consulta = dr1.GetInt32(0);
                     consulta.Prontuario = dr1.GetInt32(1);
                     consulta.Nome = dr1.GetString(2);
-                    consulta.Dt_Consulta = dr1.GetDateTime(3).ToString();
+                    //consulta.Dt_Consulta = dr1.GetDateTime(3).ToString();
+                    consulta.Dt_Consulta = dr1.GetDateTime(3);
                     consulta.Grade = dr1.GetInt32(4);
                     consulta.Equipe = dr1.GetString(5);
                     consulta.Nome_Profissional = dr1.GetString(6);
@@ -303,7 +304,7 @@ public class AtivoDAO
                 cmm.Parameters.Add("@id_consulta", SqlDbType.Int).Value = _id_consulta;
                 cmm.Parameters.Add("@status", SqlDbType.Int).Value = _status;
                 cmm.Parameters.Add("@observacao", SqlDbType.VarChar).Value = _observacao;
-                cmm.Parameters.Add("@data_ligacao", SqlDbType.VarChar).Value = _dtAtivo;
+                cmm.Parameters.Add("@data_ligacao", SqlDbType.DateTime).Value = _dtAtivo;
                 cmm.Parameters.Add("@tentativa", SqlDbType.Int).Value = _tentativa;
                 cmm.Parameters.Add("@usuario", SqlDbType.VarChar).Value = _usuario;
                 cmm.Parameters.Add("@realizado", SqlDbType.VarChar).Value = _realizado;
@@ -410,7 +411,7 @@ public class AtivoDAO
                               " AND s.[tenta] = 'S'" +
                               " AND a.[realizado] = 'N'" +
                               " AND equipe NOT LIKE 'ENDOCRINO%'" +
-                              " AND datediff(day, GETDATE() , dt_consulta ) > 0 " +
+                              " AND datediff(day, dt_consulta ,GETDATE()  ) > 0 " +
                               " ORDER BY c.[dt_consulta];";
             try
             {
@@ -430,7 +431,7 @@ public class AtivoDAO
                     tentativa.Prontuario = dr1.GetInt32(7);
                     tentativa.Nome = dr1.GetString(8);
                     tentativa.Codigo_Consulta = dr1.GetInt32(9);
-                    tentativa.Dt_Consulta = dr1.GetDateTime(10).ToString();
+                    tentativa.Dt_Consulta = dr1.GetDateTime(10);
                     tentativa.Grade = dr1.GetInt32(11);
                     tentativa.Equipe = dr1.GetString(12);
                     tentativa.Nome_Profissional = dr1.GetString(13);
@@ -492,7 +493,7 @@ public class AtivoDAO
                     tentativa.Usuario_Contato = dr1.GetString(6);
                     tentativa.Prontuario = dr1.GetInt32(7);
                     tentativa.Codigo_Consulta = dr1.GetInt32(8);
-                    tentativa.Dt_Consulta = dr1.GetDateTime(9).ToString();
+                    tentativa.Dt_Consulta = dr1.GetDateTime(9);
                     tentativa.Grade = dr1.GetInt32(10);
                     tentativa.Equipe = dr1.GetString(11);
                     tentativa.Nome_Profissional = dr1.GetString(12);
@@ -553,7 +554,7 @@ public class AtivoDAO
                     consulta.Id_Consulta = dr1.GetInt32(0);
                     consulta.Prontuario = dr1.GetInt32(1);
                     consulta.Nome = dr1.GetString(2);
-                    consulta.Dt_Consulta = dr1.GetDateTime(3).ToString();
+                    consulta.Dt_Consulta = dr1.GetDateTime(3);
                     consulta.Grade = dr1.GetInt32(4);
                     consulta.Equipe = dr1.GetString(5);
                     consulta.Nome_Profissional = dr1.GetString(6);
@@ -675,7 +676,7 @@ public class AtivoDAO
                     tentativa.Prontuario = dr1.GetInt32(7);
                     tentativa.Nome = dr1.GetString(8);
                     tentativa.Codigo_Consulta = dr1.GetInt32(9);
-                    tentativa.Dt_Consulta = dr1.GetDateTime(10).ToString();
+                    tentativa.Dt_Consulta = dr1.GetDateTime(10);
                     tentativa.Grade = dr1.GetInt32(11);
                     tentativa.Equipe = dr1.GetString(12);
                     tentativa.Nome_Profissional = dr1.GetString(13);
