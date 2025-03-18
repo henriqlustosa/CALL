@@ -27,7 +27,7 @@
                 OnPageIndexChanging="grdMain_PageIndexChanging" DataKeyNames="Prontuario" OnRowCommand="grdMain_RowCommand"
                 CssClass="table table-striped table-bordered" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">--%>
                       <asp:GridView ID="GridView1" runat="server"  AutoGenerateColumns="False"
-                DataKeyNames="Id_consulta" OnRowCommand="grdMain_RowCommand"
+                DataKeyNames="Prontuario" OnRowCommand="grdMain_RowCommand"
                CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1" Width="100%" >    
                 <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

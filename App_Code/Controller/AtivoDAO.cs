@@ -411,7 +411,7 @@ public class AtivoDAO
                               " AND s.[tenta] = 'S'" +
                               " AND a.[realizado] = 'N'" +
                               " AND equipe NOT LIKE 'ENDOCRINO%'" +
-                              " AND datediff(day, dt_consulta ,GETDATE()  ) > 0 " +
+                              " AND DATEDIFF(DAY , GETDATE(), c.[dt_consulta]) > 0 " +
                               " ORDER BY c.[dt_consulta];";
             try
             {

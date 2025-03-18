@@ -146,8 +146,9 @@
             infoFiltered: "(filtrado de _MAX_ registros no total)"
         },
         columnDefs: [
-            { targets: [3], render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm:ss', 'pt-br') }
-        ]
+            { targets: [2,8], render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm:ss', 'pt-br') }
+        ],
+        order: [[0, 'desc']] // Ordena a primeira coluna (índice 0) de forma decrescente
     });
 
 }); </script>

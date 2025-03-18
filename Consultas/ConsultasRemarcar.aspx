@@ -3,9 +3,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 
-  
-    <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
-  
+            <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
+ <script src='<%= ResolveUrl("~/moment/jquery-3.7.0.js") %>' type="text/javascript"></script>
+<script src='<%= ResolveUrl("~/moment/moment.min.js") %>' type="text/javascript"></script>
+<script src='<%= ResolveUrl("~/moment/jquery.dataTables.min.js") %>' type="text/javascript"></script>
+<script src='<%= ResolveUrl("~/moment/datetime.js") %>' charset="utf8" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -95,9 +97,13 @@
                         info: "Mostrando página _PAGE_ de _PAGES_",
                         infoEmpty: "Nenhum registro encontrado",
                         infoFiltered: "(filtrado de _MAX_ registros no total)"
-                    }
+                    },
+                    columnDefs: [
+                        { targets: [3, 6], render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm:ss', 'pt-br') }
+                    ],
+                    order: [[0, 'desc']] // Ordena a primeira coluna (índice 0) de forma decrescente
                 });
 
             });
-         </script>
+        </script>
 </asp:Content>
