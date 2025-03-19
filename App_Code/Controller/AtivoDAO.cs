@@ -120,7 +120,7 @@ public class AtivoDAO
                                 " AND l.status = s.id_status " +
                                 " AND s.tenta = 'S' " +
                                 " AND c.equipe NOT LIKE 'ENDOCRINO%'" +
-                                " AND datediff(day,dt_consulta, GETDATE()   ) > 0 " +
+                                " AND datediff(day, GETDATE() ,dt_consulta  ) > 0 " +
                                 " AND l.realizado = 'N'";
         }
         else
