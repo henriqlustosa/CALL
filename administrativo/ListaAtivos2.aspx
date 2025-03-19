@@ -19,7 +19,7 @@
               <h3>
                 <asp:Label ID="lbQtdConsultas" runat="server" Text=""></asp:Label></h3>
               <asp:GridView ID="GridView1" runat="server"  AutoGenerateColumns="False"
- DataKeyNames="Id_consulta" OnRowCommand="grdMain_RowCommand"
+ DataKeyNames="Prontuario" OnRowCommand="grdMain_RowCommand"
 CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1" Width="100%" >    
                 <Columns>
                     <asp:BoundField DataField="Id_consulta" HeaderText="ID" SortExpression="Id_consulta"
@@ -57,26 +57,35 @@ CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
 
                   let table = $('#<%= GridView1.ClientID %>');
 
-        // Mover o primeiro TR para o THEAD corretamente
-        let firstRow = table.find("tr:first").detach();
-        table.prepend($("<thead></thead>").append(firstRow));
+      // Mover o primeiro TR para o THEAD corretamente
+      let firstRow = table.find("tr:first").detach();
+      table.prepend($("<thead></thead>").append(firstRow));
 
-        // Inicializar o DataTable corretamente
-        table.DataTable({
-            destroy: true, // Permite reinicializar a tabela sem erro
-            language: {
-                search: "<i class='fa fa-search' aria-hidden='true'></i>",
-                processing: "Processando...",
-                lengthMenu: "Mostrando _MENU_ registros por página",
-                info: "Mostrando página _PAGE_ de _PAGES_",
-                infoEmpty: "Nenhum registro encontrado",
-                infoFiltered: "(filtrado de _MAX_ registros no total)"
-            },
-            columnDefs: [
-                { targets: [3], render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm:ss', 'pt-br') }
-            ]
-        });
-
-    }); </script>
+      // Inicializar o DataTable corretamente
+      table.DataTable({
+          destroy: true, // Permite reinicializar a tabela sem erro
+          pageLength: 10, // Definir 10 registros por página
+          lengthChange: false, // Remover opção de alterar quantidade de registros por página
+          ordering: false, // Desativar a ordenação nas colunas
+          language: {
+              search: "<i class='fa fa-search' aria-hidden='true'></i>",
+              processing: "Processando...",
+              lengthMenu: "Mostrando _MENU_ registros por página",
+              info: "Mostrando página _PAGE_ de _PAGES_",
+              infoEmpty: "Nenhum registro encontrado",
+              infoFiltered: "(filtrado de _MAX_ registros no total)",
+              paginate: {
+                  first: "Primeiro",
+                  last: "Último",
+                  next: "Próximo",
+                  previous: "Anterior"
+              }
+          },
+          columnDefs: [
+              { targets: [3], render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm:ss', 'pt-br') }
+          ]
+      });
+  });
+; </script>
 </asp:Content>
 

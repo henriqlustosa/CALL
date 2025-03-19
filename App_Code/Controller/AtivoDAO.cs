@@ -655,7 +655,7 @@ public class AtivoDAO
                               " AND s.[tenta] = 'S'" +
                               " AND a.[realizado] = 'N'" +
                               " AND c.[equipe] LIKE 'ENDOCRINO%'" +
-                              " AND datediff(day, GETDATE() , dt_consulta ) > 0 " +
+                              " AND  DATEDIFF(DAY , GETDATE(), c.[dt_consulta]) > 0  " +
                               " ORDER BY id_consulta;";
 
             try

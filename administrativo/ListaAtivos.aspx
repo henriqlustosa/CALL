@@ -84,18 +84,27 @@
         // Inicializar o DataTable corretamente
         table.DataTable({
             destroy: true, // Permite reinicializar a tabela sem erro
+            pageLength: 10, // Definir 10 registros por página
+            lengthChange: false, // Remover opção de alterar quantidade de registros por página
+            ordering: false, // Desativar a ordenação nas colunas
             language: {
                 search: "<i class='fa fa-search' aria-hidden='true'></i>",
                 processing: "Processando...",
                 lengthMenu: "Mostrando _MENU_ registros por página",
                 info: "Mostrando página _PAGE_ de _PAGES_",
                 infoEmpty: "Nenhum registro encontrado",
-                infoFiltered: "(filtrado de _MAX_ registros no total)"
+                infoFiltered: "(filtrado de _MAX_ registros no total)",
+                paginate: {
+                    first: "Primeiro",
+                    last: "Último",
+                    next: "Próximo",
+                    previous: "Anterior"
+                }
             },
             columnDefs: [
                 { targets: [3], render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm:ss', 'pt-br') }
             ]
         });
-
-    }); </script>
+    });
+</script>
 </asp:Content>
