@@ -84,21 +84,41 @@
   
 
         <script type="text/javascript">
-            $(document).ready(function() {
+     
+            $(document).ready(function () {
                 $.noConflict();
 
-                $('#<%= GridView1.ClientID %>').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
-                    language: {
-                        search: "<i class='fa fa-search' aria-hidden='true'></i>",
-                        processing: "Processando...",
-                        lengthMenu: "Mostrando _MENU_ registros por páginas",
-                        info: "Mostrando página _PAGE_ de _PAGES_",
-                        infoEmpty: "Nenhum registro encontrado",
-                        infoFiltered: "(filtrado de _MAX_ registros no total)"
-                    }
-                });
+                let table = $('#<%= GridView1.ClientID %>');
 
-            });
-         </script>
+                  // Mover o primeiro TR para o THEAD corretamente
+                  let firstRow = table.find("tr:first").detach();
+                  table.prepend($("<thead></thead>").append(firstRow));
+
+                  // Inicializar o DataTable corretamente
+                  let dataTable = table.DataTable({
+                      destroy: true,
+                  
+                      language: {
+                          search: "<i class='fa fa-search' aria-hidden='true'></i>",
+                          processing: "Processando...",
+                          lengthMenu: "Mostrando _MENU_ registros por página",
+                          info: "Mostrando página _PAGE_ de _PAGES_",
+                          infoEmpty: "Nenhum registro encontrado",
+                          infoFiltered: "(filtrado de _MAX_ registros no total)",
+                          paginate: {
+                              first: "Primeiro",
+                              last: "Último",
+                              next: "Próximo",
+                              previous: "Anterior"
+                          }
+                      },
+                      columnDefs: [
+                          { targets: [3,4], render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm:ss', 'pt-br') }
+                      ]
+                  });
+
+
+              });
+        </script>
 </asp:Content>
 

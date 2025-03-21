@@ -446,3 +446,10 @@ table.dataTable td {
     margin-top: 0.5em;
   }
 }
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background-color: red !important; /* Fundo vermelho */
+    color: white !important; /* Texto branco para contraste */
+    font-weight: bold; /* Deixar o número mais destacado */
+    border: 1px solid red !important; /* Borda vermelha */
+    border-radius: 4px; /* Bordas arredondadas (opcional) */
+}

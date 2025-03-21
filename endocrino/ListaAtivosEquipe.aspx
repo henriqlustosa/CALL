@@ -1,6 +1,9 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ListaAtivosEquipe.aspx.cs" Inherits="administrativo_ListaAtivosEquipe" Title="Call HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+
+
+
           <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
  <script src='<%= ResolveUrl("~/moment/jquery-3.7.0.js") %>' type="text/javascript"></script>
 <script src='<%= ResolveUrl("~/moment/moment.min.js") %>' type="text/javascript"></script>
@@ -66,11 +69,11 @@
     table.prepend($("<thead></thead>").append(firstRow));
 
     // Inicializar o DataTable corretamente
-    table.DataTable({
-        destroy: true, // Permite reinicializar a tabela sem erro
-        pageLength: 10, // Definir 10 registros por página
-        lengthChange: false, // Remover opção de alterar quantidade de registros por página
-        ordering: false, // Desativar a ordenação nas colunas
+    let dataTable = table.DataTable({
+        destroy: true,
+        pageLength: 10,
+        lengthChange: false,
+        ordering: false,
         language: {
             search: "<i class='fa fa-search' aria-hidden='true'></i>",
             processing: "Processando...",
@@ -89,8 +92,10 @@
             { targets: [3], render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm:ss', 'pt-br') }
         ]
     });
-});
 
- </script>
+    
+              });
+
+          </script>
 </asp:Content>
 

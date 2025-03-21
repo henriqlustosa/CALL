@@ -1,7 +1,11 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="pedidospendentes.aspx.cs" Inherits="encaminhamento_pedidospendentes" Title="Call HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
- <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
+          <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
+ <script src='<%= ResolveUrl("~/moment/jquery-3.7.0.js") %>' type="text/javascript"></script>
+<script src='<%= ResolveUrl("~/moment/moment.min.js") %>' type="text/javascript"></script>
+<script src='<%= ResolveUrl("~/moment/jquery.dataTables.min.js") %>' type="text/javascript"></script>
+<script src='<%= ResolveUrl("~/moment/datetime.js") %>' charset="utf8" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
 <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -56,27 +60,43 @@
     
  
    
-  <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
-  
-  <script src='<%= ResolveUrl("~/build/js/jquery.dataTables.js") %>' type="text/javascript"></script>
-  
+
 
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $.noConflict();
 
-                $('#<%= GridView1.ClientID %>').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
-                    language: {
-                        search: "<i class='fa fa-search' aria-hidden='true'></i>",
-                        processing: "Processando...",
-                        lengthMenu: "Mostrando _MENU_ registros por páginas",
-                        info: "Mostrando página _PAGE_ de _PAGES_",
-                        infoEmpty: "Nenhum registro encontrado",
-                        infoFiltered: "(filtrado de _MAX_ registros no total)"
-                    }
-                });
+                let table = $('#<%= GridView1.ClientID %>');
 
-            });
-         </script>
+                         // Mover o primeiro TR para o THEAD corretamente
+                         let firstRow = table.find("tr:first").detach();
+                         table.prepend($("<thead></thead>").append(firstRow));
+
+                         // Inicializar o DataTable corretamente
+                         let dataTable = table.DataTable({
+                             destroy: true,
+                           
+                             language: {
+                                 search: "<i class='fa fa-search' aria-hidden='true'></i>",
+                                 processing: "Processando...",
+                                 lengthMenu: "Mostrando _MENU_ registros por página",
+                                 info: "Mostrando página _PAGE_ de _PAGES_",
+                                 infoEmpty: "Nenhum registro encontrado",
+                                 infoFiltered: "(filtrado de _MAX_ registros no total)",
+                                 paginate: {
+                                     first: "Primeiro",
+                                     last: "Último",
+                                     next: "Próximo",
+                                     previous: "Anterior"
+                                 }
+                             },
+                             columnDefs: [
+                                 { targets: [3,4], render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm:ss', 'pt-br') }
+                             ]
+                         });
+
+
+                     });
+        </script>
 </asp:Content>
 
