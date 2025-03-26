@@ -60,7 +60,7 @@ public partial class Restrito_CadastraStatusLigacao : System.Web.UI.Page
                             status AS Descricao, 
                             tenta AS Tentativa, 
                             ativo AS Ativo 
-                         FROM [hspmCall].[dbo].[status_consulta] 
+                         FROM [hspmCall].[dbo].[status_consulta]  where deletado ='N'
                          ORDER BY id_status";
 
 
@@ -124,39 +124,40 @@ public partial class Restrito_CadastraStatusLigacao : System.Web.UI.Page
         }
     }
 
-   
+
 
 
     // Método para tratar comandos do GridView (Excluir)
-    //protected void gvStatusLigacao_RowCommand(object sender, GridViewCommandEventArgs e)
-    //{
-    //    if (e.CommandName == "Excluir")
-    //    {
-    //        try
-    //        {
-    //            int id = Convert.ToInt32(e.CommandArgument);
+    protected void gvStatusLigacao_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        if (e.CommandName == "Excluir")
+        {
+            try
+            {
+                int id = Convert.ToInt32(e.CommandArgument);
 
-    //            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["gtaConnectionString"].ToString()))
-    //            {
-    //                conn.Open();
-    //                string query = "DELETE FROM [hspmCall].[dbo].[status_consulta] WHERE id_status = @Id";
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["gtaConnectionString"].ToString()))
+{
+    conn.Open();
+    string query = "UPDATE [dbo].[status_consulta]  SET    [deletado] = 'S' WHERE id_status = @Id";
 
-    //                using (var cmd = new SqlCommand(query, conn))
-    //                {
-    //                    cmd.Parameters.AddWithValue("@Id", id);
-    //                    cmd.ExecuteNonQuery();
-    //                }
-    //            }
+    using (var cmd = new SqlCommand(query, conn))
+    {
+        cmd.Parameters.AddWithValue("@Id", id);
+        cmd.ExecuteNonQuery();
+    }
+}
 
-    //            lbMensagem.Text = "Registro excluído com sucesso!";
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            lbMensagem.Text = "Erro ao excluir: " + ex.Message;
-    //        }
+lbMensagem.Text = "Registro excluído com sucesso!";
+            }
+            catch (Exception ex)
+            {
+                lbMensagem.Text = "Erro ao excluir: " + ex.Message;
+            }
 
-    //        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#modalMsg').modal('show');", true);
-    //        CarregaStatus();
-    //    }
-    //}
+            //ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#modalMsg').modal('show');", true);
+CarregaStatus();
+            UpdatePanel1.Update();
+        }
+    }
 }

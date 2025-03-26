@@ -7,20 +7,21 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CALL", ".", "{D8F9F1DC-DB8C
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv3.5"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_2975"
-		Debug.AspNetCompiler.PhysicalPath = "G:\OneDrive - Default Directory\OneDrive - rede.sp\WorkSpace_Call_2024\CALL\"
+		Debug.AspNetCompiler.PhysicalPath = "..\CALL\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_2975\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/localhost_2975"
-		Release.AspNetCompiler.PhysicalPath = "G:\OneDrive - Default Directory\OneDrive - rede.sp\WorkSpace_Call_2024\CALL\"
+		Release.AspNetCompiler.PhysicalPath = "..\CALL\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_2975\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "2975"
+		SlnRelativePath = "..\CALL\"
 	EndProjectSection
 EndProject
 Global
@@ -35,6 +36,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {8BDCBCC5-9228-4614-8792-7A644E1BFFCA}
+		SolutionGuid = {922F5701-6BED-45B3-B832-ECB0BADC1CEA}
 	EndGlobalSection
 EndGlobal

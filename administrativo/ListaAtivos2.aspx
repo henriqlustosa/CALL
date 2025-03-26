@@ -6,6 +6,76 @@
  <script src='<%= ResolveUrl("~/moment/moment.min.js") %>' type="text/javascript"></script>
  <script src='<%= ResolveUrl("~/moment/jquery.dataTables.min.js") %>' type="text/javascript"></script>
  <script src='<%= ResolveUrl("~/moment/datetime.js") %>' charset="utf8" type="text/javascript"></script>
+     <script src='<%= ResolveUrl("~/moment/jquery.smartresize.js") %>'></script>
+
+            <style>
+.dataTables_paginate {
+    display: block !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap !important;
+    scroll-behavior: smooth;
+
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+
+    padding: 10px 0;
+
+    /* 👇 Aqui está o ajuste de altura */
+    height: auto !important;          /* deixa o container crescer */
+    min-height: 55px;                 /* altura mínima para caber os botões */
+}
+
+
+/* 🔧 Container da paginação com scroll horizontal e linha única */
+.dataTables_paginate {
+    display: block !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap !important;
+    padding: 10px 0;
+    text-align: left;
+    scroll-behavior: smooth;
+}
+
+/* 🔧 Garante que todos os botões fiquem lado a lado */
+.dataTables_paginate span {
+    display: inline-block;
+}
+
+/* ✅ Estilização dos botões */
+.dataTables_paginate .paginate_button {
+    display: inline-block;
+    min-width: 40px;
+    padding: 6px 12px;
+    margin: 2px;
+    font-size: 14px;
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+/* Botão ativo (página atual) */
+.dataTables_paginate .paginate_button.current {
+    background-color: red !important;
+    color: white !important;
+    font-weight: bold;
+}
+
+/* Hover */
+.dataTables_paginate .paginate_button:hover {
+    background-color: #c0c
+
+
+
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
 <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -51,41 +121,55 @@ CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
             </asp:GridView>
         </ContentTemplate>
     </asp:UpdatePanel>
-          <script type="text/javascript">
-              $(document).ready(function () {
-                  $.noConflict();
+         
+ <script type="text/javascript">
+     Sys.Application.add_load(function () {
+         $.noConflict();
 
-                  let table = $('#<%= GridView1.ClientID %>');
+         let table = $('#<%= GridView1.ClientID %>');
+         $.fn.DataTable.ext.pager.numbers_length = 20; // padrão é 7
 
-      // Mover o primeiro TR para o THEAD corretamente
-      let firstRow = table.find("tr:first").detach();
-      table.prepend($("<thead></thead>").append(firstRow));
+         // Verificar se já foi inicializado antes de reprocessar o THEAD
+         if (!$.fn.DataTable.isDataTable(table)) {
+             let firstRow = table.find("tr:first").detach();
+             table.prepend($("<thead></thead>").append(firstRow));
+         }
 
-      // Inicializar o DataTable corretamente
-      table.DataTable({
-          destroy: true, // Permite reinicializar a tabela sem erro
-          pageLength: 10, // Definir 10 registros por página
-          lengthChange: false, // Remover opção de alterar quantidade de registros por página
-          ordering: false, // Desativar a ordenação nas colunas
-          language: {
-              search: "<i class='fa fa-search' aria-hidden='true'></i>",
-              processing: "Processando...",
-              lengthMenu: "Mostrando _MENU_ registros por página",
-              info: "Mostrando página _PAGE_ de _PAGES_",
-              infoEmpty: "Nenhum registro encontrado",
-              infoFiltered: "(filtrado de _MAX_ registros no total)",
-              paginate: {
-                  first: "Primeiro",
-                  last: "Último",
-                  next: "Próximo",
-                  previous: "Anterior"
-              }
-          },
-          columnDefs: [
-              { targets: [3], render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm:ss', 'pt-br') }
-          ]
-      });
-  });
-; </script>
+         // Destruir instância anterior se necessário
+         if ($.fn.DataTable.isDataTable(table)) {
+             table.DataTable().destroy();
+         }
+
+         // Inicializar o DataTable com paginação completa
+         table.DataTable({
+             destroy: true,
+             pageLength: 10,
+             lengthChange: false,
+             ordering: false,
+             pagingType: "full_numbers", // Mostra todos os números de página
+             language: {
+                 search: "<i class='fa fa-search' aria-hidden='true'></i>",
+                 processing: "Processando...",
+                 lengthMenu: "Mostrando _MENU_ registros por página",
+                 info: "Mostrando página _PAGE_ de _PAGES_",
+                 infoEmpty: "Nenhum registro encontrado",
+                 infoFiltered: "(filtrado de _MAX_ registros no total)",
+                 paginate: {
+                     first: "Primeiro",
+                     last: "Último",
+                     next: "Próximo",
+                     previous: "Anterior"
+                 }
+             },
+             columnDefs: [
+                 {
+                     targets: [3],
+                     render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm:ss', 'pt-br')
+                 }
+             ]
+         });
+     });
+
+ </script>
 </asp:Content>
 

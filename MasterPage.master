@@ -10,12 +10,13 @@
     <title>Call HSPM</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    
-    <!-- Bootstrap  
+      <!-- Bootstrap  
     <link href="vendors/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
     -->
-    
-    <link href="build/css/bootstrap.css" rel="stylesheet" type="text/css" />
+          
+
+  <link href="build/css/bootstrap.css" rel="stylesheet" type="text/css" />
+       
     
     <!-- Font Awesome -->
     <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />

@@ -4,23 +4,20 @@
     Title="Call HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet" />
-    <script src='<%= ResolveUrl("~/moment/jquery-3.7.0.js") %>'></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js"></script>
+   <!-- Estilos -->
+<link rel="stylesheet" href="../vendors/iCheck/skins/flat/green.css" />
+    <link href="../fontawesome-free-6.7.2-web/css/all.min.css" rel="stylesheet" />
 
+<link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
+<!-- Scripts -->
+<script src='<%= ResolveUrl("~/moment/jquery-3.7.0.js") %>'></script>
+<script src='<%= ResolveUrl("~/moment/bootstrap.bundle.min.js") %>'></script>
+<script src='<%= ResolveUrl("~/moment/moment.min.js") %>'></script>
+<script src='<%= ResolveUrl("~/moment/jquery.dataTables.min.js") %>'></script>
+<script src='<%= ResolveUrl("~/moment/datetime.js") %>' charset="utf8"></script>
+<script src='<%= ResolveUrl("~/moment/icheck.min.js") %>'></script>
+<script src='<%= ResolveUrl("~/moment/jquery.smartresize.js") %>'></script>
 
-    <script src='<%= ResolveUrl("~/moment/moment.min.js") %>'></script>
-    <script src='<%= ResolveUrl("~/moment/jquery.dataTables.min.js") %>'></script>
-    <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
-    <script src='<%= ResolveUrl("~/moment/datetime.js") %>' charset="utf8"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/all.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
-
-    
-<script src="https://cdn.jsdelivr.net/npm/jquery-smartresize@1.0.0/jquery.smartresize.min.js"></script>
-
-<script src="/build/js/custom.js"></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
@@ -32,15 +29,15 @@
     </div>
 
     <div class="x_content">
-        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+     <%--   <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">--%>
             <ContentTemplate>
 
                 <!-- Botão oculto para postback do modal -->
                 <asp:Button ID="btnSalvarEdicao" runat="server" OnClick="BtnSalvarEdicao_Click" Style="display:none;" />
 
                 <!-- Formulário de Cadastro -->
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>
+     
+            
                         <div id="demo-form" class="col-sm-4" data-parsley-validate>
 
                             <label for="descricaoStatus">Descrição * :</label>
@@ -67,10 +64,12 @@
 
                         <!-- GridView -->
                       
-
-                                               <asp:GridView ID="gvStatusLigacao" runat="server"  AutoGenerateColumns="False"
- DataKeyNames="Id_status" 
+                                   <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                                       <ContentTemplate>
+                                               <asp:GridView ID="gvStatusLigacao" runat="server"  AutoGenerateColumns="False" 
+ DataKeyNames="Id_status"   OnRowCommand="gvStatusLigacao_RowCommand"
 CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1" Width="100%" >    
+
                             <Columns>
                                 <asp:BoundField DataField="Id_status" HeaderText="ID" SortExpression="Id_status" />
                                 <asp:BoundField DataField="Descricao" HeaderText="Descrição" SortExpression="Descricao" />
@@ -85,11 +84,11 @@ CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
                                             data-tentativa='<%# Eval("Tentativa") %>'
                                             data-ativo='<%# Eval("Ativo") %>'>✏️</button>
 
-<%--                                        <asp:LinkButton ID="btnExcluir" runat="server" CssClass="btn btn-sm btn-danger"
+                                    <asp:LinkButton ID="btnExcluir" runat="server" CssClass="btn btn-sm btn-danger"
                                             CommandName="Excluir" CommandArgument='<%# Eval("Id_status") %>'
                                             OnClientClick="return confirm('Tem certeza que deseja excluir?');">
                                             ❌
-                                        </asp:LinkButton>--%>
+                                        </asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -104,8 +103,7 @@ CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
                     </ContentTemplate>
                 </asp:UpdatePanel>
 
-            </ContentTemplate>
-        </asp:UpdatePanel>
+       <%-- </asp:UpdatePanel>--%>
     </div>
 
     <!-- Modal de Mensagem -->
@@ -190,87 +188,91 @@ CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
 
     <!-- Scripts -->
     <script type="text/javascript">
-        $(document).ready(function () {
-            $.noConflict();
+        Sys.Application.add_load(function () {
+           $.noConflict();
 
             let table = $('#<%= gvStatusLigacao.ClientID %>');
 
-          if (table.length) {
-              // Mover o primeiro TR para o THEAD corretamente
-              let firstRow = table.find("tr:first").detach();
-              table.prepend($("<thead></thead>").append(firstRow));
+    if (table.length) {
+        // Mover o primeiro TR para o THEAD corretamente
+        let firstRow = table.find("tr:first").detach();
+        table.prepend($("<thead></thead>").append(firstRow));
 
-              // Inicializar o DataTable corretamente
-              table.DataTable({
-                  destroy: true,
-                  language: {
-                      search: "<i class='fa fa-search' aria-hidden='true'></i>",
-                      processing: "Processando...",
-                      lengthMenu: "Mostrando _MENU_ registros por página",
-                      info: "Mostrando página _PAGE_ de _PAGES_",
-                      infoEmpty: "Nenhum registro encontrado",
-                      infoFiltered: "(filtrado de _MAX_ registros no total)",
-                      paginate: {
-                          first: "Primeiro",
-                          last: "Último",
-                          next: "Próximo",
-                          previous: "Anterior"
-                      }
-                  }
-              });
-          }
+        // Inicializar o DataTable corretamente
+        table.DataTable({
+            retrieve: true, // Evita erro de re-instanciação
+            destroy: true,  // Permite reinstanciar
+            paging: true,
+            searching: true,
+            ordering: true,
+            language: {
+                search: "<i class='fa fa-search' aria-hidden='true'></i>",
+                processing: "Processando...",
+                lengthMenu: "Mostrando _MENU_ registros por página",
+                info: "Mostrando página _PAGE_ de _PAGES_",
+                infoEmpty: "Nenhum registro encontrado",
+                infoFiltered: "(filtrado de _MAX_ registros no total)",
+                paginate: {
+                    first: "Primeiro",
+                    last: "Último",
+                    next: "Próximo",
+                    previous: "Anterior"
+                }
+            }
+        });
+    }
 
-          // Abrir modal de edição ao clicar no botão de edição
-          $(".btn-editar").on("click", function () {
-              $("#edit-id").val($(this).data("id"));
-              $("#edit-descricao").val($(this).data("descricao"));
+    // Abrir modal de edição
+    $(document).on("click", ".btn-editar", function () {
+        $("#edit-id").val($(this).data("id"));
+        $("#edit-descricao").val($(this).data("descricao"));
 
-              let tentativa = $(this).data("tentativa");
-              let ativo = $(this).data("ativo");
+        let tentativa = $(this).data("tentativa");
+        let ativo = $(this).data("ativo");
 
-              // Corrige seleção dos radio buttons
-              $("input[name='edit-tentativa']").prop("checked", false);
-              $("input[name='edit-ativo']").prop("checked", false);
+        $("input[name='edit-tentativa']").prop("checked", false);
+        $("input[name='edit-ativo']").prop("checked", false);
 
-              if (tentativa === "S") {
-                  $("#tentativaSim").prop("checked", true);
-              } else {
-                  $("#tentativaNao").prop("checked", true);
-              }
+        if (tentativa === "S") {
+            $("#tentativaSim").prop("checked", true);
+        } else {
+            $("#tentativaNao").prop("checked", true);
+        }
 
-              if (ativo === "S") {
-                  $("#ativoSim").prop("checked", true);
-              } else {
-                  $("#ativoNao").prop("checked", true);
-              }
+        if (ativo === "S") {
+            $("#ativoSim").prop("checked", true);
+        } else {
+            $("#ativoNao").prop("checked", true);
+        }
 
-              $("#modalEditar").modal("show");
-          });
+        $("#modalEditar").modal("show");
+    });
 
-          // Salvamento da edição
-          $("#btnSalvar").on("click", function () {
-              let tentativa = $("input[name='edit-tentativa']:checked").val();
-              let ativo = $("input[name='edit-ativo']:checked").val();
+    // Salvamento da edição
+    $("#btnSalvar").on("click", function () {
+        let tentativa = $("input[name='edit-tentativa']:checked").val();
+        let ativo = $("input[name='edit-ativo']:checked").val();
 
-              if (!tentativa || !ativo) {
-                  alert("Selecione as opções de Tentativa e Ativo antes de salvar.");
-                  return;
-              }
+        if (!tentativa || !ativo) {
+            alert("Selecione as opções de Tentativa e Ativo antes de salvar.");
+            return;
+        }
 
-              $("form input[name^='edit-']").remove();
-              $('<input>').attr({ type: 'hidden', name: 'edit-id', value: $("#edit-id").val() }).appendTo('form');
-              $('<input>').attr({ type: 'hidden', name: 'edit-descricao', value: $("#edit-descricao").val() }).appendTo('form');
-              $('<input>').attr({ type: 'hidden', name: 'edit-tentativa', value: tentativa }).appendTo('form');
-              $('<input>').attr({ type: 'hidden', name: 'edit-ativo', value: ativo }).appendTo('form');
-              __doPostBack('<%= btnSalvarEdicao.UniqueID %>', '');
-              $("#modalEditar").modal("hide");
+        $("form input[name^='edit-']").remove();
+        $('<input>').attr({ type: 'hidden', name: 'edit-id', value: $("#edit-id").val() }).appendTo('form');
+        $('<input>').attr({ type: 'hidden', name: 'edit-descricao', value: $("#edit-descricao").val() }).appendTo('form');
+        $('<input>').attr({ type: 'hidden', name: 'edit-tentativa', value: tentativa }).appendTo('form');
+        $('<input>').attr({ type: 'hidden', name: 'edit-ativo', value: ativo }).appendTo('form');
+        __doPostBack('<%= btnSalvarEdicao.UniqueID %>', '');
+        $("#modalEditar").modal("hide");
 
-              // Aguarda 1 segundo e recarrega a página
-              setTimeout(function () {
-                  location.reload();
-              }, 1000);
-          });
-      });
+        //// Aguarda 1 segundo e recarrega a página
+        //setTimeout(function () {
+        //    location.reload();
+        //}, 1000);
+    });
+     });
+
 
     </script>
 </asp:Content>
