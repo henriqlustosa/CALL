@@ -189,38 +189,41 @@ CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
     <!-- Scripts -->
     <script type="text/javascript">
         Sys.Application.add_load(function () {
-           $.noConflict();
+            $.noConflict();
 
             let table = $('#<%= gvStatusLigacao.ClientID %>');
 
-    if (table.length) {
-        // Mover o primeiro TR para o THEAD corretamente
-        let firstRow = table.find("tr:first").detach();
-        table.prepend($("<thead></thead>").append(firstRow));
+          if ($.fn.DataTable.isDataTable(table)) {
+              table.DataTable().destroy(); // Destroi a instância antiga
+              table.find('thead').remove(); // Remove o thead anterior
+          }
 
-        // Inicializar o DataTable corretamente
-        table.DataTable({
-            retrieve: true, // Evita erro de re-instanciação
-            destroy: true,  // Permite reinstanciar
-            paging: true,
-            searching: true,
-            ordering: true,
-            language: {
-                search: "<i class='fa fa-search' aria-hidden='true'></i>",
-                processing: "Processando...",
-                lengthMenu: "Mostrando _MENU_ registros por página",
-                info: "Mostrando página _PAGE_ de _PAGES_",
-                infoEmpty: "Nenhum registro encontrado",
-                infoFiltered: "(filtrado de _MAX_ registros no total)",
-                paginate: {
-                    first: "Primeiro",
-                    last: "Último",
-                    next: "Próximo",
-                    previous: "Anterior"
-                }
-            }
-        });
-    }
+          // Move o cabeçalho correto para o thead novamente
+          let firstRow = table.find("tr:first").detach();
+          table.prepend($("<thead></thead>").append(firstRow));
+
+          // Reinicializa
+          table.DataTable({
+              paging: true,
+              searching: true,
+              ordering: true,
+              language: {
+                  search: "<i class='fa fa-search' aria-hidden='true'></i>",
+                  processing: "Processando...",
+                  lengthMenu: "Mostrando _MENU_ registros por página",
+                  info: "Mostrando página _PAGE_ de _PAGES_",
+                  infoEmpty: "Nenhum registro encontrado",
+                  infoFiltered: "(filtrado de _MAX_ registros no total)",
+                  paginate: {
+                      first: "Primeiro",
+                      last: "Último",
+                      next: "Próximo",
+                      previous: "Anterior"
+                  }
+              }
+          });
+      });
+
 
     // Abrir modal de edição
     $(document).on("click", ".btn-editar", function () {
@@ -271,7 +274,7 @@ CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
         //    location.reload();
         //}, 1000);
     });
-     });
+ 
 
 
     </script>

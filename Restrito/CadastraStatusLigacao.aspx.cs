@@ -137,27 +137,30 @@ public partial class Restrito_CadastraStatusLigacao : System.Web.UI.Page
                 int id = Convert.ToInt32(e.CommandArgument);
 
                 using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["gtaConnectionString"].ToString()))
-{
-    conn.Open();
-    string query = "UPDATE [dbo].[status_consulta]  SET    [deletado] = 'S' WHERE id_status = @Id";
+                {
+                    conn.Open();
+                    string query = "UPDATE [dbo].[status_consulta] SET deletado = 'S' WHERE id_status = @Id";
 
-    using (var cmd = new SqlCommand(query, conn))
-    {
-        cmd.Parameters.AddWithValue("@Id", id);
-        cmd.ExecuteNonQuery();
-    }
-}
+                    using (var cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
 
-lbMensagem.Text = "Registro excluído com sucesso!";
+                lbMensagem.Text = "Registro excluído com sucesso!";
             }
             catch (Exception ex)
             {
                 lbMensagem.Text = "Erro ao excluir: " + ex.Message;
             }
 
-            //ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#modalMsg').modal('show');", true);
-CarregaStatus();
-            UpdatePanel1.Update();
+            CarregaStatus();
+          
+
+            // ⚠️ Força o recarregamento completo da página após meio segundo
+            ScriptManager.RegisterStartupScript(this, GetType(), "ReloadPage", "setTimeout(function() { location.reload(); }, 500);", true);
         }
     }
+
 }
