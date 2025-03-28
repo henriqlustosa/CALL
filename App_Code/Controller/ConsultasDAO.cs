@@ -66,7 +66,7 @@ public class ConsultasDAO
             SqlCommand cmm = cnn.CreateCommand();
            
 
-            string sqlConsulta = "SELECT [id_consulta]" +
+            string sqlConsulta = "SELECT  [id_consulta]" +
                               ",[equipe]" +
                               ",[dt_consulta]" +
                               ",[codigo_consulta]" +
@@ -90,6 +90,7 @@ public class ConsultasDAO
                 while (dr1.Read())
                 {
                     ConsultasRemarcar consulta = new ConsultasRemarcar();
+                    consulta.Id_Ativo = 0;
                     consulta.Id_Consulta = dr1.GetInt32(0);
                     consulta.Equipe = dr1.GetString(1);
                     consulta.Dt_Consulta = dr1.GetDateTime(2);
@@ -110,7 +111,7 @@ public class ConsultasDAO
         using (SqlConnection cnn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["gtaConnectionString"].ToString()))
         {
             SqlCommand cmm1 = cnn1.CreateCommand();
-            string sqlAtivo_consulta = "SELECT  [id_consulta]" +
+            string sqlAtivo_consulta = "SELECT [idativo], [id_consulta]" +
                                         "  ,[equipe]" +
                                         "  ,[dt_consulta]" +
                                         "  ,[codigo_consulta]" +
@@ -134,18 +135,19 @@ public class ConsultasDAO
                 while (dr2.Read())
                 {
                     ConsultasRemarcar consulta1 = new ConsultasRemarcar();
-                    consulta1.Id_Consulta = dr2.GetInt32(0);
-                    consulta1.Equipe = dr2.GetString(1);
-                    consulta1.Dt_Consulta = dr2.GetDateTime(2);
-                    consulta1.Codigo_Consulta = dr2.GetInt32(3);
-                    consulta1.Grade = dr2.GetInt32(4);
-                    consulta1.Equipe = dr2.GetString(5);
-                    consulta1.Nome_Profissional = dr2.GetString(6);
-                    consulta1.Status = dr2.GetString(7);
-                    consulta1.Observacao = dr2.GetString(8);
-                    consulta1.Data_Contato = dr2.GetDateTime(9);
-                    consulta1.Usuario_Contato = dr2.GetString(10);
-                    consulta1.DescricaoRemarcar = InformacaoConCancelada(dr2.GetInt32(0));
+                    consulta1.Id_Ativo = dr2.GetInt32(0);
+                    consulta1.Id_Consulta = dr2.GetInt32(1);
+                    consulta1.Equipe = dr2.GetString(2);
+                    consulta1.Dt_Consulta = dr2.GetDateTime(3);
+                    consulta1.Codigo_Consulta = dr2.GetInt32(4);
+                    consulta1.Grade = dr2.GetInt32(5);
+                    consulta1.Equipe = dr2.GetString(6);
+                    consulta1.Nome_Profissional = dr2.GetString(7);
+                    consulta1.Status = dr2.GetString(8);
+                    consulta1.Observacao = dr2.GetString(9);
+                    consulta1.Data_Contato = dr2.GetDateTime(10);
+                    consulta1.Usuario_Contato = dr2.GetString(11);
+                    consulta1.DescricaoRemarcar = InformacaoConCancelada(dr2.GetInt32(1));
                     lista.Add(consulta1);
                 }
             }
