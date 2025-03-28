@@ -25,8 +25,29 @@
                 <span class="count_bottom">Desde 08/10/2019</span>
             </div>
         </div>
-        <asp:Button ID="btnGerarArquivo" runat="server" Text="Gerar arquivo total" class="btn btn-primary"
+        <!-- Seleção de Mês -->
+<asp:DropDownList ID="ddlMes" runat="server" CssClass="form-control">
+    <asp:ListItem Value="1">Janeiro</asp:ListItem>
+    <asp:ListItem Value="2">Fevereiro</asp:ListItem>
+    <asp:ListItem Value="3">Março</asp:ListItem>
+    <asp:ListItem Value="4">Abril</asp:ListItem>
+    <asp:ListItem Value="5">Maio</asp:ListItem>
+    <asp:ListItem Value="6">Junho</asp:ListItem>
+    <asp:ListItem Value="7">Julho</asp:ListItem>
+    <asp:ListItem Value="8">Agosto</asp:ListItem>
+    <asp:ListItem Value="9">Setembro</asp:ListItem>
+    <asp:ListItem Value="10">Outubro</asp:ListItem>
+    <asp:ListItem Value="11">Novembro</asp:ListItem>
+    <asp:ListItem Value="12">Dezembro</asp:ListItem>
+</asp:DropDownList>
+
+<!-- Seleção de Ano (Alterado para DropDownList) -->
+<asp:DropDownList ID="ddlAno" runat="server" CssClass="form-control"></asp:DropDownList>
+
+<!-- Botão Gerar Relatório -->
+<asp:Button ID="Button6" runat="server" Text="Gerar arquivo total" class="btn btn-primary"
             OnClick="btnCarregarDados_Click" />
+       
         <asp:GridView ID="gridAtivos" runat="server">
         </asp:GridView>
     </div>

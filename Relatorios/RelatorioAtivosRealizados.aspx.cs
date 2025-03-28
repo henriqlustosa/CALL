@@ -33,14 +33,95 @@ public partial class Relatorios_RelatorioAtivosRealizados : System.Web.UI.Page
             lbDataEsteMes.Text = primeiroDia.ToShortDateString() + " à " + DateTime.Now.ToShortDateString();
 
             lbDataTrintaDias.Text = DateTime.Now.AddDays(-30).ToShortDateString() + " à " + DateTime.Now.ToShortDateString();
+
+            CarregarAnosDisponiveis();
         }
+    }
+    
+
+
+
+    private void CarregarAnosDisponiveis()
+    {
+        DataTable dtAnos = new DataTable();
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["gtaConnectionString"].ToString()))
+        {
+            try
+            {
+                cnn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = cnn;
+                    command.CommandText = "SELECT DISTINCT YEAR(data_ligacao) AS Ano FROM vw_relatorio_ativos ORDER BY Ano DESC";
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(dtAnos);
+                    }
+                }
+
+                ddlAno.DataSource = dtAnos;
+                ddlAno.DataTextField = "Ano";
+                ddlAno.DataValueField = "Ano";
+                ddlAno.DataBind();
+
+                // Adicionar um item padrão
+                ddlAno.Items.Insert(0, new ListItem("Selecione o Ano", "0"));
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+            }
+        }
+    }
+
+    public DataTable CarregaDadosTotais(int mes, int ano)
+    {
+        DataTable dt = new DataTable();
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["gtaConnectionString"].ToString()))
+        {
+            try
+            {
+                cnn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = cnn;
+                    command.CommandText = @"
+                    SELECT * FROM [vw_relatorio_ativos] 
+                    WHERE MONTH(data_ligacao) = @Mes AND YEAR(data_ligacao) = @Ano";
+
+                    command.Parameters.AddWithValue("@Mes", mes);
+                    command.Parameters.AddWithValue("@Ano", ano);
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+            }
+        }
+        return dt;
     }
 
     protected void btnCarregarDados_Click(object sender, EventArgs e)
     {
-        gridAtivos.DataSource = CarregaDadosTotais();
-        gridAtivos.DataBind();
-        ExportGridToExcel();
+        int mes = int.Parse(ddlMes.SelectedValue);
+        int ano;
+
+        if (int.TryParse(ddlAno.SelectedValue, out ano) && ano != 0)
+        {
+            gridAtivos.DataSource = CarregaDadosTotais(mes, ano);
+            gridAtivos.DataBind();
+            ExportGridToExcel();
+        }
+        else
+        {
+            Response.Write("<script>alert('Por favor, selecione um ano válido.');</script>");
+        }
     }
 
     protected void btnCarregarDadosHoje_Click(object sender, EventArgs e)
@@ -369,33 +450,8 @@ public partial class Relatorios_RelatorioAtivosRealizados : System.Web.UI.Page
         return dt;
     }
 
-    public DataTable CarregaDadosTotais()
-    {
-        DataTable dt = new DataTable();
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["gtaConnectionString"].ToString()))
-        {
-            try
-            {
-                cnn.Open();
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = cnn;
-                    command.CommandText = "SELECT * FROM [vw_relatorio_ativos]";
+   
 
-                    using (SqlDataAdapter adapter = new SqlDataAdapter())
-                    {
-                        adapter.SelectCommand = command;
-                        adapter.Fill(dt);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                string error = ex.Message;
-            }
-        }
-        return dt;
-    }
 
     public override void VerifyRenderingInServerForm(Control control)
     {
