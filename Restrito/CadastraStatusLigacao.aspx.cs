@@ -12,9 +12,60 @@ public partial class Restrito_CadastraStatusLigacao : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            // Certifique-se de que o ViewState é inicializado antes de carregar o GridView
+            VerificarPermissaoUsuario();
             CarregaStatus(); // Carrega os dados no GridView
         }
     }
+    private void VerificarPermissaoUsuario()
+    {
+        string usuarioLogado = User.Identity.Name; // Ou outro método de capturar o usuário autenticado
+        string perfilUsuario = ObterPerfilUsuario(usuarioLogado);
+
+        if (string.IsNullOrEmpty(perfilUsuario) || perfilUsuario.ToLower() != "ativo")
+        {
+            ViewState["PermitirEdicao"] = false;
+            ViewState["PermitirExclusao"] = false;
+        }
+        else
+        {
+            ViewState["PermitirEdicao"] = true;
+            ViewState["PermitirExclusao"] = true;
+        }
+    }
+
+    private string ObterPerfilUsuario(string nomeUsuario)
+    {
+        string perfil = string.Empty;
+
+        using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["gtaConnectionString"].ToString()))
+        {
+            conn.Open();
+
+            string query = @"
+            SELECT r.RoleName
+            FROM [hspmCall].[dbo].[aspnet_Users] u
+            INNER JOIN [hspmCall].[dbo].[aspnet_UsersInRoles] ur ON u.UserId = ur.UserId
+            INNER JOIN [hspmCall].[dbo].[aspnet_Roles] r ON ur.RoleId = r.RoleId
+            WHERE u.UserName = @Username";
+
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@Username", nomeUsuario);
+
+                var result = cmd.ExecuteScalar();
+                if (result != null)
+                {
+                    perfil = result.ToString();
+                }
+            }
+        }
+
+        return perfil;
+    }
+
+
+
 
     // Método para cadastrar um novo status de ligação
     protected void btnCadastrar_Click(object sender, EventArgs e)
