@@ -24,9 +24,57 @@ public partial class Paciente_historico : System.Web.UI.Page
         if (!IsPostBack)
         {
             Msg.Text = "Por favor, forneça um número de prontuário.";
+
+            // Certifique-se de que o ViewState é inicializado antes de carregar o GridView
+            VerificarPermissaoUsuario();
             CarregarStatusConsulta(); // <- aqui
         }
     }
+    private void VerificarPermissaoUsuario()
+    {
+        string usuarioLogado = User.Identity.Name; // Ou outro método de capturar o usuário autenticado
+        List<string> perfisUsuario = ObterPerfisUsuario(usuarioLogado); // Agora retorna uma lista de perfis
+
+        // Verifica se a lista contém o perfil "Administrador" (case insensitive)
+        bool possuiPermissao = perfisUsuario.Any(perfil => perfil.Equals("Administradores", StringComparison.OrdinalIgnoreCase));
+
+        // Salva o resultado da verificação no ViewState
+        ViewState["PermitirEdicao"] = possuiPermissao;
+    }
+
+    private List<string> ObterPerfisUsuario(string nomeUsuario)
+    {
+        var perfis = new List<string>();
+
+        using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["gtaConnectionString"].ToString()))
+        {
+            conn.Open();
+
+            string query = @"
+        SELECT r.RoleName
+        FROM [hspmCall].[dbo].[aspnet_Users] u
+        INNER JOIN [hspmCall].[dbo].[aspnet_UsersInRoles] ur ON u.UserId = ur.UserId
+        INNER JOIN [hspmCall].[dbo].[aspnet_Roles] r ON ur.RoleId = r.RoleId
+        WHERE u.UserName = @Username";
+
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@Username", nomeUsuario);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        perfis.Add(reader["RoleName"].ToString());
+                    }
+                }
+            }
+        }
+
+        return perfis;
+    }
+
+
 
     public void SearchHistorico_OnClick(object sender, EventArgs e)
     {

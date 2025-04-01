@@ -119,9 +119,12 @@
                                 SortExpression="DescricaoRemarcar" ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
                                <asp:TemplateField HeaderText="Ações">
        <ItemTemplate>
+               <% if ((bool)ViewState["PermitirEdicao"])
+        { %>
            <asp:LinkButton ID="btnEditar" runat="server" Text="Editar"
                CommandName="EditarPopup" CommandArgument='<%# Eval("Id_ativo") %>'
                CssClass="btn btn-sm btn-primary" />
+             <% } %>
        </ItemTemplate>
    </asp:TemplateField>
                         </Columns>

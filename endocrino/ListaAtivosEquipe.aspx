@@ -151,7 +151,7 @@
              destroy: true,
              pageLength: 10,
              lengthChange: false,
-             ordering: false,
+             order: [[3, 'asc']], // Ordena pela coluna 3 (dt_consulta) de forma decrescente
              pagingType: "full_numbers", // Mostra todos os números de página
              language: {
                  search: "<i class='fa fa-search' aria-hidden='true'></i>",

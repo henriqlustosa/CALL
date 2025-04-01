@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -20,48 +21,47 @@ public partial class Restrito_CadastraStatusLigacao : System.Web.UI.Page
     private void VerificarPermissaoUsuario()
     {
         string usuarioLogado = User.Identity.Name; // Ou outro método de capturar o usuário autenticado
-        string perfilUsuario = ObterPerfilUsuario(usuarioLogado);
+        List<string> perfisUsuario = ObterPerfisUsuario(usuarioLogado); // Agora retorna uma lista de perfis
 
-        if (string.IsNullOrEmpty(perfilUsuario) || perfilUsuario.ToLower() != "ativo")
-        {
-            ViewState["PermitirEdicao"] = false;
-            ViewState["PermitirExclusao"] = false;
-        }
-        else
-        {
-            ViewState["PermitirEdicao"] = true;
-            ViewState["PermitirExclusao"] = true;
-        }
+        // Verifica se a lista contém o perfil "Administrador" (case insensitive)
+        bool possuiPermissao = perfisUsuario.Any(perfil => perfil.Equals("Administradores", StringComparison.OrdinalIgnoreCase));
+
+        // Salva o resultado da verificação no ViewState
+        ViewState["PermitirEdicao"] = possuiPermissao;
+        // Salva o resultado da verificação no ViewState
+        ViewState["PermitirExclusao"] = possuiPermissao;
     }
 
-    private string ObterPerfilUsuario(string nomeUsuario)
+    private List<string> ObterPerfisUsuario(string nomeUsuario)
     {
-        string perfil = string.Empty;
+        var perfis = new List<string>();
 
         using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["gtaConnectionString"].ToString()))
         {
             conn.Open();
 
             string query = @"
-            SELECT r.RoleName
-            FROM [hspmCall].[dbo].[aspnet_Users] u
-            INNER JOIN [hspmCall].[dbo].[aspnet_UsersInRoles] ur ON u.UserId = ur.UserId
-            INNER JOIN [hspmCall].[dbo].[aspnet_Roles] r ON ur.RoleId = r.RoleId
-            WHERE u.UserName = @Username";
+        SELECT r.RoleName
+        FROM [hspmCall].[dbo].[aspnet_Users] u
+        INNER JOIN [hspmCall].[dbo].[aspnet_UsersInRoles] ur ON u.UserId = ur.UserId
+        INNER JOIN [hspmCall].[dbo].[aspnet_Roles] r ON ur.RoleId = r.RoleId
+        WHERE u.UserName = @Username";
 
             using (var cmd = new SqlCommand(query, conn))
             {
                 cmd.Parameters.AddWithValue("@Username", nomeUsuario);
 
-                var result = cmd.ExecuteScalar();
-                if (result != null)
+                using (var reader = cmd.ExecuteReader())
                 {
-                    perfil = result.ToString();
+                    while (reader.Read())
+                    {
+                        perfis.Add(reader["RoleName"].ToString());
+                    }
                 }
             }
         }
 
-        return perfil;
+        return perfis;
     }
 
 
