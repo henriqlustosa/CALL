@@ -18,6 +18,7 @@
     </siteMapNode>
 
     <siteMapNode url="" title="Relatórios" roles="Administradores" description="Páginas relácionadas a informações relatórios" >
+		<siteMapNode url="~/Relatorios/RelatorioAtivosPowerBI.aspx" title="Ativos Realizados Power BI" description="Relatório de ativos Power BI" />
       <siteMapNode url="~/Relatorios/RelatorioAtivosRealizados.aspx" title="Ativos Realizados" description="Relatório de total ativos relizados" />
       <siteMapNode url="~/Grafico/dadosMes.aspx" title="Gráficos de Ativos" description="Gráficos de ativos realizados por mês" />
       <siteMapNode url="~/Grafico/dadosMesUsuario.aspx" title="Gráficos de Ativos Usuário " description="Gráficos de ativos realizados no mês por usuário" />
