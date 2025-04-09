@@ -325,10 +325,10 @@ public class AtivoDAO
                     mensagem = "Cadastro realizado com sucesso!";
 
                 // 2 - cancelar consulta, 3 - cancelar e remarcar, 4 - falecido, 7 - pessoa desconhecida, 8 - telefone inexistente
-                if(_status == 4 ) 
+                if(_status == 3 ) 
                 {
                     consultasCanceladas(_id_consulta);
-                }
+                    consultasAtualizarStatus(_id_consulta);                }
             }
             catch (Exception ex)
             {
@@ -360,6 +360,41 @@ public class AtivoDAO
                     "values (@id_consulta)";
 
                 cmm.Parameters.Add("@id_consulta", SqlDbType.Int).Value = _id_consulta;
+               
+                cmm.ExecuteNonQuery();
+                mt.Commit();
+                mt.Dispose();
+                cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                try
+                {
+                    mt.Rollback();
+                }
+                catch (Exception ex1)
+                {
+                    Console.WriteLine(ex1.Message);
+                }
+            }
+        }
+    }
+    protected static void consultasAtualizarStatus(int _id_consulta)
+    {
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["gtaConnectionString"].ToString()))
+        {
+            SqlCommand cmm = new SqlCommand();
+            cmm.Connection = cnn;
+            cnn.Open();
+            SqlTransaction mt = cnn.BeginTransaction();
+            cmm.Transaction = mt;
+            try
+            {
+                cmm.CommandText = "UPDATE consultas_cancelar SET stat_cancelar = 1 WHERE id_consulta = @id_consulta";
+
+                cmm.Parameters.Add("@id_consulta", SqlDbType.Int).Value = _id_consulta;
+
                 cmm.ExecuteNonQuery();
                 mt.Commit();
                 mt.Dispose();

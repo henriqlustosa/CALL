@@ -25,7 +25,7 @@
                         </asp:DropDownList>
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
                             ConnectionString="<%$ ConnectionStrings:gtaConnectionString %>" 
-                            SelectCommand="SELECT [id_status], [status] FROM [status_consulta] WHERE [id_status] IN (2,3,4,7,8) ">
+                            SelectCommand="SELECT [id_status], [status] FROM [status_consulta] WHERE [id_status] IN (3) ">
                         </asp:SqlDataSource>
                         
                     </div>

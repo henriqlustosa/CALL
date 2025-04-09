@@ -170,22 +170,24 @@ public class ConsultasDAO
             SqlCommand cmm = cnn.CreateCommand();
 
             cmm.CommandText = "SELECT [id_cancela] " +
-                              ",[id_consulta]" +
-                              ",[prontuario]" +
-                              ",[nome_paciente]" +
-                              ",[equipe]" +
-                              ",[dt_consulta]" +
-                              ",[codigo_consulta]" +
-                              ",[desc_status]" +
-                              ",[observacao]" +
-                              ",[data_ligacao]" +
-                              ",[stat_cancelar]" +
-                              ",[status]" +
-                              ",[usuario]" +
-                              ",[grade]" +
-                              " FROM [vw_cancelar_consultas] " +
-                              " WHERE stat_cancelar = 1 " +
-                              " AND status = " + _status;
+                    ",[id_consulta]" +
+                    ",[prontuario]" +
+                    ",[nome_paciente]" +
+                    ",[equipe]" +
+                    ",[dt_consulta]" +
+                    ",[codigo_consulta]" +
+                    ",[desc_status]" +
+                    ",[observacao]" +
+                    ",[data_ligacao]" +
+                    ",[stat_cancelar]" +
+                    ",[status]" +
+                    ",[usuario]" +
+                    ",[grade]" +
+                    " FROM [vw_cancelar_consultas] " +
+                    " WHERE stat_cancelar = 1 " +
+                    " AND status = " + _status +
+                    " AND dt_consulta >= '2025-19-03'";
+
             try
             {
                 cnn.Open();
