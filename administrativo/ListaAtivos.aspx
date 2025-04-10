@@ -2,6 +2,7 @@
     CodeFile="ListaAtivos.aspx.cs" Inherits="administrativo_ListaAtivos" Title="Call HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
        <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
   <script src='<%= ResolveUrl("~/moment/jquery-3.7.0.js") %>' type="text/javascript"></script>
  <script src='<%= ResolveUrl("~/moment/moment.min.js") %>' type="text/javascript"></script>
@@ -97,7 +98,7 @@
            <%-- <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                 OnPageIndexChanging="grdMain_PageIndexChanging" DataKeyNames="Prontuario" OnRowCommand="grdMain_RowCommand"
                 CssClass="table table-striped table-bordered" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">--%>
-                      <asp:GridView ID="GridView1" runat="server"  AutoGenerateColumns="False"
+                      <asp:GridView ID="GridView1" runat="server"  AutoGenerateColumns="False" ClientIDMode="Static" 
                 DataKeyNames="Prontuario" OnRowCommand="grdMain_RowCommand"
                CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1" Width="100%" >    
                 <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -165,8 +166,16 @@
         destroy: true,
         pageLength: 10,
         lengthChange: false,
-        order: [[3, 'asc']], // Ordena pela coluna 3 (dt_consulta) de forma decrescente
-        pagingType: "full_numbers", // Mostra todos os números de página
+        ordering: false, // <- isso remove as setinhas de todas as colunas
+        order: [[3, 'asc']], // Ordena pela coluna 3 (dt_consulta)
+        pagingType: "full_numbers",
+        stateSave: true,
+        stateSaveCallback: function (settings, data) {
+            sessionStorage.setItem('DataTables_' + settings.sInstance, JSON.stringify(data));
+        },
+        stateLoadCallback: function (settings) {
+            return JSON.parse(sessionStorage.getItem('DataTables_' + settings.sInstance));
+        },
         language: {
             search: "<i class='fa fa-search' aria-hidden='true'></i>",
             processing: "Processando...",
@@ -183,12 +192,27 @@
         },
         columnDefs: [
             {
-                targets: [3],
+                targets: [3], // coluna de data
                 render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm:ss', 'pt-br')
             }
         ]
     });
-});
+     });
+
+         Sys.Application.add_load(function () {
+             $('#GridView1').DataTable().destroy(); // Destroi o anterior
+         $('#GridView1').DataTable({
+             stateSave: true,
+         stateSaveCallback: function (settings, data) {
+             sessionStorage.setItem('DataTables_' + settings.sInstance, JSON.stringify(data));
+            },
+         stateLoadCallback: function (settings) {
+                return JSON.parse(sessionStorage.getItem('DataTables_' + settings.sInstance));
+            }
+        });
+    });
+
+
 
  </script>
 </asp:Content>

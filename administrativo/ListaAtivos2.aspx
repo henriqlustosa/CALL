@@ -88,7 +88,7 @@
         <ContentTemplate>
               <h3>
                 <asp:Label ID="lbQtdConsultas" runat="server" Text=""></asp:Label></h3>
-              <asp:GridView ID="GridView1" runat="server"  AutoGenerateColumns="False"
+              <asp:GridView ID="GridView1" runat="server"  AutoGenerateColumns="False" ClientIDMode="Static" 
  DataKeyNames="Prontuario" OnRowCommand="grdMain_RowCommand"
 CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1" Width="100%" >    
                 <Columns>
@@ -127,48 +127,71 @@ CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
          $.noConflict();
 
          let table = $('#<%= GridView1.ClientID %>');
-         $.fn.DataTable.ext.pager.numbers_length = 20; // padrão é 7
+        $.fn.DataTable.ext.pager.numbers_length = 20; // padrão é 7
 
-         // Verificar se já foi inicializado antes de reprocessar o THEAD
-         if (!$.fn.DataTable.isDataTable(table)) {
-             let firstRow = table.find("tr:first").detach();
-             table.prepend($("<thead></thead>").append(firstRow));
-         }
+        // Verificar se já foi inicializado antes de reprocessar o THEAD
+        if (!$.fn.DataTable.isDataTable(table)) {
+            let firstRow = table.find("tr:first").detach();
+            table.prepend($("<thead></thead>").append(firstRow));
+        }
 
-         // Destruir instância anterior se necessário
-         if ($.fn.DataTable.isDataTable(table)) {
-             table.DataTable().destroy();
-         }
+        // Destruir instância anterior se necessário
+        if ($.fn.DataTable.isDataTable(table)) {
+            table.DataTable().destroy();
+        }
 
-         // Inicializar o DataTable com paginação completa
-         table.DataTable({
-             destroy: true,
-             pageLength: 10,
-             lengthChange: false,
-             ordering: false,
-             pagingType: "full_numbers", // Mostra todos os números de página
-             language: {
-                 search: "<i class='fa fa-search' aria-hidden='true'></i>",
-                 processing: "Processando...",
-                 lengthMenu: "Mostrando _MENU_ registros por página",
-                 info: "Mostrando página _PAGE_ de _PAGES_",
-                 infoEmpty: "Nenhum registro encontrado",
-                 infoFiltered: "(filtrado de _MAX_ registros no total)",
-                 paginate: {
-                     first: "Primeiro",
-                     last: "Último",
-                     next: "Próximo",
-                     previous: "Anterior"
-                 }
+        // Inicializar o DataTable com paginação completa
+        table.DataTable({
+            destroy: true,
+            pageLength: 10,
+            lengthChange: false,
+            ordering: false, // <- isso remove as setinhas de todas as colunas
+            order: [[3, 'asc']], // Ordena pela coluna 3 (dt_consulta)
+            pagingType: "full_numbers",
+            stateSave: true,
+            stateSaveCallback: function (settings, data) {
+                sessionStorage.setItem('DataTables_' + settings.sInstance, JSON.stringify(data));
+            },
+            stateLoadCallback: function (settings) {
+                return JSON.parse(sessionStorage.getItem('DataTables_' + settings.sInstance));
+            },
+            language: {
+                search: "<i class='fa fa-search' aria-hidden='true'></i>",
+                processing: "Processando...",
+                lengthMenu: "Mostrando _MENU_ registros por página",
+                info: "Mostrando página _PAGE_ de _PAGES_",
+                infoEmpty: "Nenhum registro encontrado",
+                infoFiltered: "(filtrado de _MAX_ registros no total)",
+                paginate: {
+                    first: "Primeiro",
+                    last: "Último",
+                    next: "Próximo",
+                    previous: "Anterior"
+                }
+            },
+            columnDefs: [
+                {
+                    targets: [3], // coluna de data
+                    render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm:ss', 'pt-br')
+                }
+            ]
+        });
+    });
+
+     Sys.Application.add_load(function () {
+         $('#GridView1').DataTable().destroy(); // Destroi o anterior
+         $('#GridView1').DataTable({
+             stateSave: true,
+             stateSaveCallback: function (settings, data) {
+                 sessionStorage.setItem('DataTables_' + settings.sInstance, JSON.stringify(data));
              },
-             columnDefs: [
-                 {
-                     targets: [3],
-                     render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm:ss', 'pt-br')
-                 }
-             ]
+             stateLoadCallback: function (settings) {
+                 return JSON.parse(sessionStorage.getItem('DataTables_' + settings.sInstance));
+             }
          });
      });
+
+
 
  </script>
 </asp:Content>

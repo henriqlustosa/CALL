@@ -16,7 +16,11 @@ public partial class administrativo_Listaativos2 : System.Web.UI.Page
     //Segunda tentativa de ligar para o paciente
     protected void Page_Load(object sender, EventArgs e)
     {
-        BindGrid();
+
+        if (!IsPostBack)
+        {
+            BindGrid();
+        }
     }
     private void BindGrid()
     {

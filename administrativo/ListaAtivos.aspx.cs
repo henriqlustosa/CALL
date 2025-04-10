@@ -15,7 +15,11 @@ public partial class administrativo_ListaAtivos : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        BindGrid();
+
+        if (!IsPostBack)
+        {
+            BindGrid();
+        }
     }
     private void BindGrid()
     {

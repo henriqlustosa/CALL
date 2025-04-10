@@ -91,7 +91,8 @@
                 OnPageIndexChanging="grdMain_PageIndexChanging" DataKeyNames="Prontuario" OnRowCommand="grdMain_RowCommand"
                 CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
                 <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />--%>
-                    <asp:GridView ID="GridView1" runat="server"  AutoGenerateColumns="False"
+                    <asp:GridView ID="GridView1" runat="server"  AutoGenerateColumns="False" ClientIDMode="Static" 
+
   DataKeyNames="Prontuario" OnRowCommand="grdMain_RowCommand"
  CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1" Width="100%" >    
                 <Columns>
@@ -125,6 +126,7 @@
         </ContentTemplate>
     </asp:UpdatePanel>
           
+         
  <script type="text/javascript">
      Sys.Application.add_load(function () {
          $.noConflict();
@@ -148,8 +150,16 @@
              destroy: true,
              pageLength: 10,
              lengthChange: false,
-             ordering: false,
-             pagingType: "full_numbers", // Mostra todos os números de página
+             ordering: false, // <- isso remove as setinhas de todas as colunas
+             order: [[3, 'asc']], // Ordena pela coluna 3 (dt_consulta)
+             pagingType: "full_numbers",
+             stateSave: true,
+             stateSaveCallback: function (settings, data) {
+                 sessionStorage.setItem('DataTables_' + settings.sInstance, JSON.stringify(data));
+             },
+             stateLoadCallback: function (settings) {
+                 return JSON.parse(sessionStorage.getItem('DataTables_' + settings.sInstance));
+             },
              language: {
                  search: "<i class='fa fa-search' aria-hidden='true'></i>",
                  processing: "Processando...",
@@ -166,12 +176,27 @@
              },
              columnDefs: [
                  {
-                     targets: [3],
+                     targets: [3], // coluna de data
                      render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm:ss', 'pt-br')
                  }
              ]
          });
      });
+
+     Sys.Application.add_load(function () {
+         $('#GridView1').DataTable().destroy(); // Destroi o anterior
+         $('#GridView1').DataTable({
+             stateSave: true,
+             stateSaveCallback: function (settings, data) {
+                 sessionStorage.setItem('DataTables_' + settings.sInstance, JSON.stringify(data));
+             },
+             stateLoadCallback: function (settings) {
+                 return JSON.parse(sessionStorage.getItem('DataTables_' + settings.sInstance));
+             }
+         });
+     });
+
+
 
  </script>
 </asp:Content>
