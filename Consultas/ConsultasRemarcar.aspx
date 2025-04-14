@@ -8,6 +8,7 @@
 <script src='<%= ResolveUrl("~/moment/moment.min.js") %>' type="text/javascript"></script>
 <script src='<%= ResolveUrl("~/moment/jquery.dataTables.min.js") %>' type="text/javascript"></script>
 <script src='<%= ResolveUrl("~/moment/datetime.js") %>' charset="utf8" type="text/javascript"></script>
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -83,27 +84,59 @@
   <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
   
   <script src='<%= ResolveUrl("~/build/js/jquery.dataTables.js") %>' type="text/javascript"></script>
-  
 
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $.noConflict();
 
-                $('#<%= GridView1.ClientID %>').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
-                    language: {
-                        search: "<i class='fa fa-search' aria-hidden='true'></i>",
-                        processing: "Processando...",
-                        lengthMenu: "Mostrando _MENU_ registros por páginas",
-                        info: "Mostrando página _PAGE_ de _PAGES_",
-                        infoEmpty: "Nenhum registro encontrado",
-                        infoFiltered: "(filtrado de _MAX_ registros no total)"
-                    },
-                    columnDefs: [
-                        { targets: [3, 6], render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm:ss', 'pt-br') }
-                    ],
-                    order: [[0, 'desc']] // Ordena a primeira coluna (índice 0) de forma decrescente
-                });
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.noConflict();
 
-            });
-        </script>
+        var table = $('#<%= GridView1.ClientID %>');
+        var firstRow = table.find("tr:first").detach();
+        table.prepend($("<thead></thead>").append(firstRow));
+
+        if ($.fn.DataTable.isDataTable(table)) {
+            table.DataTable().destroy();
+        }
+
+        table.DataTable({
+            language: {
+                search: "<i class='fa fa-search' aria-hidden='true'></i>",
+                processing: "Processando...",
+                lengthMenu: "Mostrando _MENU_ registros por páginas",
+                info: "Mostrando página _PAGE_ de _PAGES_",
+                infoEmpty: "Nenhum registro encontrado",
+                infoFiltered: "(filtrado de _MAX_ registros no total)"
+            },
+            columnDefs: [
+                { targets: [3, 6], render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm:ss', 'pt-br') }
+            ],
+            order: [[0, 'desc']]
+        });
+
+       
+    });
+
+    (function ($, sr) {
+        var debounce = function (func, threshold, execAsap) {
+            var timeout;
+            return function debounced() {
+                var obj = this, args = arguments;
+                function delayed() {
+                    if (!execAsap) func.apply(obj, args);
+                    timeout = null;
+                }
+                if (timeout) clearTimeout(timeout);
+                else if (execAsap) func.apply(obj, args);
+                timeout = setTimeout(delayed, threshold || 100);
+            };
+        };
+        jQuery.fn[sr] = function (fn) {
+            return fn ? this.on('resize', debounce(fn)) : this.trigger(sr);
+        };
+    })(jQuery, 'smartresize');
+
+
+</script>
+
+
 </asp:Content>

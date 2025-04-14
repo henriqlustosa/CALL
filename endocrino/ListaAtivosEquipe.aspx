@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
-
+    <link rel="stylesheet" href="../moment/font-awesome.min.css" type="text/css">
 
           <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
  <script src='<%= ResolveUrl("~/moment/jquery-3.7.0.js") %>' type="text/javascript"></script>

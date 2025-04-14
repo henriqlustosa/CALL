@@ -20,7 +20,9 @@
        
     
     <!-- Font Awesome -->
-    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <%--  <link href="fontawesome-free-6.7.2-web/css/fontawesome.min.css" rel="stylesheet" />--%>
+ 
+  <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- NProgress -->
     <link href="vendors/nprogress/nprogress.css" rel="stylesheet" type="text/css" />
     
@@ -164,7 +166,7 @@
 
     <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
   
-   
+
 
     <!-- Bootstrap -->
 <%-- <script src='<%= ResolveUrl("~/moment/jquery-3.7.0.js") %>' type="text/javascript"></script>--%>
@@ -192,6 +194,7 @@
    
    
     <script src='<%= ResolveUrl("~/build/js/custom.js") %>' type="text/javascript"></script>
+
     
     <!-- jquery.inputmask -->
     <script src='<%= ResolveUrl("~/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js") %>' type="text/javascript"></script>

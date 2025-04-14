@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ListaAtivosEquipe2.aspx.cs" Inherits="endocrino_ListaAtivosEquipe2" Title="Call HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <link rel="stylesheet" href="../moment/font-awesome.min.css" type="text/css">
               <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
  <script src='<%= ResolveUrl("~/moment/jquery-3.7.0.js") %>' type="text/javascript"></script>
 <script src='<%= ResolveUrl("~/moment/moment.min.js") %>' type="text/javascript"></script>

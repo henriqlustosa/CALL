@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ListaAtivos3.aspx.cs" Inherits="administrativo_ListaAtivos3" Title="Call HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <link rel="stylesheet" href="../moment/font-awesome.min.css" type="text/css">
    <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
 
 

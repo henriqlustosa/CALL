@@ -325,10 +325,11 @@ public class AtivoDAO
                     mensagem = "Cadastro realizado com sucesso!";
 
                 // 2 - cancelar consulta, 3 - cancelar e remarcar, 4 - falecido, 7 - pessoa desconhecida, 8 - telefone inexistente
-                if(_status == 3 ) 
+                if (_status == 3)
                 {
                     consultasCanceladas(_id_consulta);
-                    consultasAtualizarStatus(_id_consulta);                }
+                    consultasAtualizarStatus(_id_consulta);
+                }
             }
             catch (Exception ex)
             {
