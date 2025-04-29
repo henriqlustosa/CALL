@@ -206,7 +206,7 @@ public class AtivoDAO
                               "WHERE c.prontuario = p.prontuario AND ativo = 0 " +
                               //" WHERE c.prontuario = p.prontuario AND ativo = 0 AND dt_consulta <= GETDATE() + 30 " +
                               " AND equipe NOT LIKE 'ENDOCRINO%'" +
-                              " ORDER BY c.id_consulta;";
+                              " ORDER BY c.dt_consulta;";
                    
             }else if(_ativoConsulta == 1 && _statusConsulta.Equals("S")) // lista as consultas tentativas
             {
@@ -221,7 +221,7 @@ public class AtivoDAO
                         " AND l.status = s.id_status " +
                         " AND s.tenta = 'S'" +
                         " AND equipe NOT LIKE 'ENDOCRINO%'" +
-                        " ORDER BY c.id_consulta;";
+                        " ORDER BY c.dt_consulta;";
             }
             try
             {
@@ -561,7 +561,7 @@ public class AtivoDAO
                               "FROM consulta c, paciente_Mailling p " +
                               " WHERE c.prontuario = p.prontuario AND ativo = 0 "+ //AND dt_consulta <= GETDATE() + 20 " +
                               " AND c.equipe LIKE 'ENDOCRINO%' " +
-                              " ORDER BY id_consulta;";
+                              " ORDER BY c.dt_consulta;";
             }
             else if (_ativoConsulta == 1 && _statusConsulta.Equals("S")) // lista as consultas tentativas
             {
@@ -576,7 +576,7 @@ public class AtivoDAO
                         " AND l.status = s.id_status " +
                         " AND s.tenta = 'S'" +
                         " AND c.equipe LIKE 'ENDOCRINO%' " +
-                        " ORDER BY id_consulta;";
+                        " ORDER BY c.dt_consulta;";
             }
 
             try
@@ -692,7 +692,7 @@ public class AtivoDAO
                               " AND a.[realizado] = 'N'" +
                               " AND c.[equipe] LIKE 'ENDOCRINO%'" +
                               " AND  DATEDIFF(DAY , GETDATE(), c.[dt_consulta]) > 0  " +
-                              " ORDER BY id_consulta;";
+                              " ORDER BY c.dt_consulta;";
 
             try
             {

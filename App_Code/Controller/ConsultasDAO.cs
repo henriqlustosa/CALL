@@ -11,6 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Text;
 
 /// <summary>
 /// Summary description for ConsultasDAO
@@ -159,66 +160,170 @@ public class ConsultasDAO
         return lista;
     }
 
-    public static List<ConsultasRemarcar> ListaConsultasCancelar(int _status)
+    //public static List<ConsultasRemarcar> ListaConsultasCancelar(int _status)
+    //{
+    //    // colocar regra para listar consultas do paciente com tentativas abaixo de 3 (terceira tentativa)
+
+    //    var lista = new List<ConsultasRemarcar>();
+
+    //    using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["gtaConnectionString"].ToString()))
+    //    {
+    //        SqlCommand cmm = cnn.CreateCommand();
+
+    //        cmm.CommandText = "SELECT [id_cancela] " +
+    //                ",[id_consulta]" +
+    //                ",[prontuario]" +
+    //                ",[nome_paciente]" +
+    //                ",[equipe]" +
+    //                ",[dt_consulta]" +
+    //                ",[codigo_consulta]" +
+    //                ",[desc_status]" +
+    //                ",[observacao]" +
+    //                ",[data_ligacao]" +
+    //                ",[stat_cancelar]" +
+    //                ",[status]" +
+    //                ",[usuario]" +
+    //                ",[grade]" +
+    //                " FROM [vw_cancelar_consultas_2] " +
+    //                " WHERE stat_cancelar = 1 " +
+    //                " AND status = " + _status +
+    //                " AND dt_consulta >= '2025-19-03'";
+
+    //        try
+    //        {
+    //            cnn.Open();
+    //            SqlDataReader dr1 = cmm.ExecuteReader();
+
+    //            //char[] ponto = { '.', ' ' };
+    //            while (dr1.Read())
+    //            {
+    //                ConsultasRemarcar consulta = new ConsultasRemarcar();
+    //                consulta.id_cancela = dr1.GetInt32(0);
+    //                consulta.Id_Consulta = dr1.GetInt32(1);
+    //                consulta.Prontuario = dr1.GetInt32(2);
+    //                consulta.Nome = dr1.GetString(3);
+    //                consulta.Equipe = dr1.GetString(4);
+    //                consulta.Dt_Consulta = dr1.GetDateTime(5);
+    //                consulta.Codigo_Consulta = dr1.GetInt32(6);
+    //                consulta.Status = dr1.GetString(7);
+    //                consulta.Observacao = dr1.GetString(8);
+    //                consulta.Data_Contato = dr1.GetDateTime(9);
+    //                consulta.Usuario_Contato = dr1.GetString(12);
+    //                consulta.Grade = dr1.GetInt32(13);
+
+    //                lista.Add(consulta);
+    //            }
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            string error = ex.Message;
+    //        }
+    //    }
+    //    return lista;
+    //}
+    public static List<ConsultasRemarcar> ListaConsultasCancelar(
+      int status,
+      int pageNumber,
+      int pageSize,
+      out int totalRows)
     {
-        // colocar regra para listar consultas do paciente com tentativas abaixo de 3 (terceira tentativa)
+        const string CONN = "gtaConnectionString";
+        DateTime dataMin = new DateTime(2025, 3, 19);
 
         var lista = new List<ConsultasRemarcar>();
+        totalRows = 0;
+
+        using (SqlConnection cnn = new SqlConnection(
+               ConfigurationManager.ConnectionStrings[CONN].ToString()))
+        {
+            cnn.Open();
+
+            // ---------- 1) Contagem total ----------
+            string countSql = @"
+            SELECT COUNT(1)
+            FROM vw_cancelar_consultas_2
+            WHERE stat_cancelar = 1 AND id_status = @status";
+
+            using (SqlCommand countCmd = new SqlCommand(countSql, cnn))
+            {
+                countCmd.Parameters.AddWithValue("@status", status);
+                totalRows = (int)countCmd.ExecuteScalar();
+            }
+
+            // ---------- 2) Paginação com ROW_NUMBER() ----------
+            int startRow = ((pageNumber -1) * pageSize) + 1;
+            int endRow = Math.Min(pageNumber * pageSize, totalRows);
+
+
+            string pageSql = @"
+            WITH ConsultaPaginada AS (
+                SELECT
+                    ROW_NUMBER() OVER (ORDER BY dt_consulta DESC) AS RowNum,
+                    id_cancela, id_consulta, prontuario, nome_paciente,
+                    equipe, dt_consulta, codigo_consulta, desc_status,
+                    observacao, data_ligacao, stat_cancelar, id_status,
+                    usuario, grade
+                FROM vw_cancelar_consultas_2
+                WHERE stat_cancelar = 1 AND id_status = @status
+            )
+            SELECT *
+            FROM ConsultaPaginada
+            WHERE RowNum BETWEEN @startRow AND @endRow
+            ORDER BY RowNum";
+
+            using (SqlCommand cmd = new SqlCommand(pageSql, cnn))
+            {
+                cmd.Parameters.AddWithValue("@status", status);
+                cmd.Parameters.AddWithValue("@startRow", startRow);
+                cmd.Parameters.AddWithValue("@endRow", endRow);
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        var c = new ConsultasRemarcar();
+                        c.id_cancela = dr.GetInt32(dr.GetOrdinal("id_cancela"));
+                        c.Id_Consulta = dr.GetInt32(dr.GetOrdinal("id_consulta"));
+                        c.Prontuario = dr.GetInt32(dr.GetOrdinal("prontuario"));
+                        c.Nome = dr.GetString(dr.GetOrdinal("nome_paciente"));
+                        c.Equipe = dr.GetString(dr.GetOrdinal("equipe"));
+                        c.Dt_Consulta = dr.GetDateTime(dr.GetOrdinal("dt_consulta"));
+                        c.Codigo_Consulta = dr.GetInt32(dr.GetOrdinal("codigo_consulta"));
+                        c.Status = dr.GetString(dr.GetOrdinal("desc_status"));
+                        c.Observacao = dr.GetString(dr.GetOrdinal("observacao"));
+                        c.Data_Contato = dr.GetDateTime(dr.GetOrdinal("data_ligacao"));
+                        c.Usuario_Contato = dr.GetString(dr.GetOrdinal("usuario"));
+                        c.Grade = dr.GetInt32(dr.GetOrdinal("grade"));
+
+                        lista.Add(c);
+                    }
+                }
+            }
+        }
+
+        return lista;
+    }
+
+    public static int  ContarConsultasCancelar(int status)
+    {
+        int totalRows = 0;
 
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["gtaConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-
-            cmm.CommandText = "SELECT [id_cancela] " +
-                    ",[id_consulta]" +
-                    ",[prontuario]" +
-                    ",[nome_paciente]" +
-                    ",[equipe]" +
-                    ",[dt_consulta]" +
-                    ",[codigo_consulta]" +
-                    ",[desc_status]" +
-                    ",[observacao]" +
-                    ",[data_ligacao]" +
-                    ",[stat_cancelar]" +
-                    ",[status]" +
-                    ",[usuario]" +
-                    ",[grade]" +
-                    " FROM [vw_cancelar_consultas] " +
-                    " WHERE stat_cancelar = 1 " +
-                    " AND status = " + _status +
-                    " AND dt_consulta >= '2025-19-03'";
+            cmm.CommandText = "SELECT COUNT(1) FROM vw_cancelar_consultas_2 WHERE stat_cancelar = 1 AND id_status = " + status;
 
             try
             {
                 cnn.Open();
-                SqlDataReader dr1 = cmm.ExecuteReader();
-
-                //char[] ponto = { '.', ' ' };
-                while (dr1.Read())
-                {
-                    ConsultasRemarcar consulta = new ConsultasRemarcar();
-                    consulta.id_cancela = dr1.GetInt32(0);
-                    consulta.Id_Consulta = dr1.GetInt32(1);
-                    consulta.Prontuario = dr1.GetInt32(2);
-                    consulta.Nome = dr1.GetString(3);
-                    consulta.Equipe = dr1.GetString(4);
-                    consulta.Dt_Consulta = dr1.GetDateTime(5);
-                    consulta.Codigo_Consulta = dr1.GetInt32(6);
-                    consulta.Status = dr1.GetString(7);
-                    consulta.Observacao = dr1.GetString(8);
-                    consulta.Data_Contato = dr1.GetDateTime(9);
-                    consulta.Usuario_Contato = dr1.GetString(12);
-                    consulta.Grade = dr1.GetInt32(13);
-
-                    lista.Add(consulta);
-                }
+                totalRows = (int)cmm.ExecuteScalar();
             }
             catch (Exception ex)
             {
                 string error = ex.Message;
             }
         }
-        return lista;
+        return totalRows;
     }
 
     public static ConsultasRemarcar getDadosConsulta(int _idConsulta, string _status)
@@ -244,7 +349,7 @@ public class ConsultasDAO
                                           ",[data_ligacao] " +
                                           ",[id_cancela] " +
                                           ",[usuario] " +
-                                          "FROM vw_cancelar_consultas " +
+                                          "FROM vw_cancelar_consultas_2 " +
                                           " WHERE id_consulta = " + _idConsulta +
                                           " AND desc_status = '" + _status + "'";
 

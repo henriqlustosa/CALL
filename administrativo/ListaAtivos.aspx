@@ -198,7 +198,7 @@
         ]
     });
      });
-
+     <script type="text/javascript">
          Sys.Application.add_load(function () {
              $('#GridView1').DataTable().destroy(); // Destroi o anterior
          $('#GridView1').DataTable({

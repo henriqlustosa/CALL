@@ -3,44 +3,12 @@
   "WorkspaceRootPath": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|g:\\onedrive - default directory\\onedrive - rede.sp\\workspace_call_2024\\call\\app_code\\controller\\ativodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|solutionrelative:app_code\\controller\\ativodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|g:\\onedrive - default directory\\onedrive - rede.sp\\workspace_call_2024\\call\\consultas\\consultasremarcar.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|solutionrelative:consultas\\consultasremarcar.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|g:\\onedrive - default directory\\onedrive - rede.sp\\workspace_call_2024\\call\\administrativo\\detalhespacientetentativa2.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|solutionrelative:administrativo\\detalhespacientetentativa2.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|g:\\onedrive - default directory\\onedrive - rede.sp\\workspace_call_2024\\call\\administrativo\\detalhespacientetentativa2.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|solutionrelative:administrativo\\detalhespacientetentativa2.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|g:\\onedrive - default directory\\onedrive - rede.sp\\workspace_call_2024\\call\\administrativo\\listaativos2.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|solutionrelative:administrativo\\listaativos2.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|g:\\onedrive - default directory\\onedrive - rede.sp\\workspace_call_2024\\call\\administrativo\\detalhespaciente.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|solutionrelative:administrativo\\detalhespaciente.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|g:\\onedrive - default directory\\onedrive - rede.sp\\workspace_call_2024\\call\\administrativo\\listaativos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|solutionrelative:administrativo\\listaativos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|g:\\onedrive - default directory\\onedrive - rede.sp\\workspace_call_2024\\call\\administrativo\\listaativos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|solutionrelative:administrativo\\listaativos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|g:\\onedrive - default directory\\onedrive - rede.sp\\workspace_call_2024\\call\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|g:\\onedrive - default directory\\onedrive - rede.sp\\workspace_call_2024\\call\\app_data\\publishprofiles\\iisprofile.pubxml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|solutionrelative:app_data\\publishprofiles\\iisprofile.pubxml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|g:\\onedrive - default directory\\onedrive - rede.sp\\workspace_call_2024\\call\\masterpage.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
-      "RelativeMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|solutionrelative:masterpage.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
+      "AbsoluteMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|g:\\onedrive - default directory\\onedrive - rede.sp\\workspace_call_2024\\call\\app_code\\controller\\consultasdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}|G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL|solutionrelative:app_code\\controller\\consultasdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -59,131 +27,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DetalhesPacienteTentativa2.aspx.cs",
-              "DocumentMoniker": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\administrativo\\DetalhesPacienteTentativa2.aspx.cs",
-              "RelativeDocumentMoniker": "administrativo\\DetalhesPacienteTentativa2.aspx.cs",
-              "ToolTip": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\administrativo\\DetalhesPacienteTentativa2.aspx.cs",
-              "RelativeToolTip": "administrativo\\DetalhesPacienteTentativa2.aspx.cs",
-              "ViewState": "AQIAAF8AAAAAAAAAAAA8wG4AAAAzAAAA",
+              "Title": "ConsultasDAO.cs",
+              "DocumentMoniker": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\App_Code\\Controller\\ConsultasDAO.cs",
+              "RelativeDocumentMoniker": "App_Code\\Controller\\ConsultasDAO.cs",
+              "ToolTip": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\App_Code\\Controller\\ConsultasDAO.cs",
+              "RelativeToolTip": "App_Code\\Controller\\ConsultasDAO.cs",
+              "ViewState": "AQIAAN8AAAAAAAAAAAAgwOMAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T19:02:29.302Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DetalhesPacienteTentativa2.aspx",
-              "DocumentMoniker": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\administrativo\\DetalhesPacienteTentativa2.aspx",
-              "RelativeDocumentMoniker": "administrativo\\DetalhesPacienteTentativa2.aspx",
-              "ToolTip": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\administrativo\\DetalhesPacienteTentativa2.aspx",
-              "RelativeToolTip": "administrativo\\DetalhesPacienteTentativa2.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-04-10T19:02:27.21Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ListaAtivos2.aspx.cs",
-              "DocumentMoniker": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\administrativo\\ListaAtivos2.aspx.cs",
-              "RelativeDocumentMoniker": "administrativo\\ListaAtivos2.aspx.cs",
-              "ToolTip": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\administrativo\\ListaAtivos2.aspx.cs",
-              "RelativeToolTip": "administrativo\\ListaAtivos2.aspx.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T19:02:05.32Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DetalhesPaciente.aspx",
-              "DocumentMoniker": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\administrativo\\DetalhesPaciente.aspx",
-              "RelativeDocumentMoniker": "administrativo\\DetalhesPaciente.aspx",
-              "ToolTip": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\administrativo\\DetalhesPaciente.aspx",
-              "RelativeToolTip": "administrativo\\DetalhesPaciente.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-04-10T18:28:29.079Z",
+              "WhenOpened": "2025-04-29T22:01:23.305Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AtivoDAO.cs",
-              "DocumentMoniker": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\App_Code\\Controller\\AtivoDAO.cs",
-              "RelativeDocumentMoniker": "App_Code\\Controller\\AtivoDAO.cs",
-              "ToolTip": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\App_Code\\Controller\\AtivoDAO.cs",
-              "RelativeToolTip": "App_Code\\Controller\\AtivoDAO.cs",
-              "ViewState": "AQIAAP8AAAAAAAAAAAAawFIBAAARAAAA",
+              "Title": "ConsultasRemarcar.aspx.cs",
+              "DocumentMoniker": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\Consultas\\ConsultasRemarcar.aspx.cs",
+              "RelativeDocumentMoniker": "Consultas\\ConsultasRemarcar.aspx.cs",
+              "ToolTip": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\Consultas\\ConsultasRemarcar.aspx.cs",
+              "RelativeToolTip": "Consultas\\ConsultasRemarcar.aspx.cs",
+              "ViewState": "AQIAAF8AAAAAAAAAAAAtwIwAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T18:19:12.659Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ListaAtivos.aspx.cs",
-              "DocumentMoniker": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\administrativo\\ListaAtivos.aspx.cs",
-              "RelativeDocumentMoniker": "administrativo\\ListaAtivos.aspx.cs",
-              "ToolTip": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\administrativo\\ListaAtivos.aspx.cs",
-              "RelativeToolTip": "administrativo\\ListaAtivos.aspx.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAQwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T17:56:58.439Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IISProfile.pubxml",
-              "DocumentMoniker": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\App_Data\\PublishProfiles\\IISProfile.pubxml",
-              "RelativeDocumentMoniker": "App_Data\\PublishProfiles\\IISProfile.pubxml",
-              "ToolTip": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\App_Data\\PublishProfiles\\IISProfile.pubxml",
-              "RelativeToolTip": "App_Data\\PublishProfiles\\IISProfile.pubxml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAA2AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
-              "WhenOpened": "2025-04-10T17:34:52.27Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "web.config",
-              "DocumentMoniker": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\web.config",
-              "RelativeDocumentMoniker": "web.config",
-              "ToolTip": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\web.config",
-              "RelativeToolTip": "web.config",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAB0AAABMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-04-10T17:33:31.488Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "MasterPage.master",
-              "DocumentMoniker": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\MasterPage.master",
-              "RelativeDocumentMoniker": "MasterPage.master",
-              "ToolTip": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\MasterPage.master",
-              "RelativeToolTip": "MasterPage.master",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-04-10T17:33:05.583Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ListaAtivos.aspx",
-              "DocumentMoniker": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\administrativo\\ListaAtivos.aspx",
-              "RelativeDocumentMoniker": "administrativo\\ListaAtivos.aspx",
-              "ToolTip": "G:\\OneDrive - Default Directory\\OneDrive - rede.sp\\WorkSpace_Call_2024\\CALL\\administrativo\\ListaAtivos.aspx",
-              "RelativeToolTip": "administrativo\\ListaAtivos.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-04-10T15:34:09.544Z",
+              "WhenOpened": "2025-04-29T21:22:52.085Z",
               "EditorCaption": ""
             }
           ]
