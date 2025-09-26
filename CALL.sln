@@ -1,26 +1,26 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.10.35122.118
+VisualStudioVersion = 17.14.36429.23 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CALL", ".", "{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CALL", ".", "{12DD3906-A33B-0AA3-407A-E3765E18B07D}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv3.5"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_2975"
-		Debug.AspNetCompiler.PhysicalPath = "G:\OneDrive - Default Directory\OneDrive - rede.sp\WorkSpace_Call_2024\CALL\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_2975\"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_58043"
+		Debug.AspNetCompiler.PhysicalPath = "E:\VisualStudio2022\CALL\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58043\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_2975"
-		Release.AspNetCompiler.PhysicalPath = "G:\OneDrive - Default Directory\OneDrive - rede.sp\WorkSpace_Call_2024\CALL\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_2975\"
+		Release.AspNetCompiler.VirtualPath = "/localhost_58043"
+		Release.AspNetCompiler.PhysicalPath = "E:\VisualStudio2022\CALL\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58043\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "2975"
+		VWDPort = "58043"
 	EndProjectSection
 EndProject
 Global
@@ -28,13 +28,13 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8F9F1DC-DB8C-49E5-A27A-4F0B80791548}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12DD3906-A33B-0AA3-407A-E3765E18B07D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12DD3906-A33B-0AA3-407A-E3765E18B07D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C5D816A5-3673-466C-B4A5-0CBB126F1339}
+		SolutionGuid = {0E686D6C-CE95-47F2-BF4F-601501269965}
 	EndGlobalSection
 EndGlobal
